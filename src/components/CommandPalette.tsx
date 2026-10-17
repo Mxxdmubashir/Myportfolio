@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Icons } from './Icons';
 
 interface CommandPaletteProps {
   isOpen: boolean;
@@ -113,20 +112,20 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/80 backdrop-blur-sm">
-      <div className="w-full max-w-lg rounded-xl border border-zinc-800 bg-zinc-900 shadow-2xl overflow-hidden flex flex-col">
-        <div className="p-3.5 border-b border-zinc-800 flex items-center gap-2.5">
+    <div className="fixed inset-0 z-50 flex items-start justify-center pt-24 px-4 bg-black/30 backdrop-blur-xs">
+      <div className="w-full max-w-lg rounded-xl border border-zinc-200 bg-white shadow-2xl overflow-hidden flex flex-col">
+        <div className="p-3.5 border-b border-zinc-200 flex items-center gap-2.5">
           <input
             type="text"
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
             placeholder="Search actions (e.g. Resume, Projects, WhatsApp)..."
-            className="w-full bg-transparent text-sm text-zinc-100 placeholder-zinc-500 outline-none"
+            className="w-full bg-transparent text-sm text-zinc-900 placeholder-zinc-400 outline-none"
           />
           <button
             onClick={onClose}
-            className="px-2 py-0.5 text-[10px] font-mono text-zinc-400 bg-zinc-800 rounded hover:text-white"
+            className="px-2 py-0.5 text-[10px] font-mono text-zinc-500 bg-zinc-100 rounded hover:text-black cursor-pointer"
           >
             ESC
           </button>
@@ -144,15 +143,15 @@ export const CommandPalette: React.FC<CommandPaletteProps> = ({ isOpen, onClose,
                 onClick={item.action}
                 className={`p-2.5 rounded-lg flex items-center justify-between cursor-pointer text-xs transition-colors ${
                   idx === selectedIndex
-                    ? 'bg-zinc-800 text-white'
-                    : 'text-zinc-300 hover:bg-zinc-800/60'
+                    ? 'bg-zinc-100 text-zinc-950 font-medium'
+                    : 'text-zinc-700 hover:bg-zinc-50'
                 }`}
               >
                 <div className="flex items-center gap-2.5">
-                  <span className="font-medium">{item.title}</span>
-                  <span className="text-[10px] text-zinc-500 font-mono">({item.category})</span>
+                  <span>{item.title}</span>
+                  <span className="text-[10px] text-zinc-400 font-mono">({item.category})</span>
                 </div>
-                <span className="text-[10px] text-zinc-500 font-mono">↵</span>
+                <span className="text-[10px] text-zinc-400 font-mono">↵</span>
               </div>
             ))
           )}

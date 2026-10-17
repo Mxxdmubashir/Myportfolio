@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Icons } from './Icons';
 
 type SimMode = 'normal' | 'sport' | 'diagnostic';
 
@@ -57,46 +56,46 @@ export const InteractiveOBDDemo: React.FC = () => {
   };
 
   return (
-    <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+    <div className="rounded-xl border border-zinc-200 bg-white p-6 shadow-xs">
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-zinc-800/80">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-5 border-b border-zinc-100">
         <div>
-          <h3 className="text-base font-bold text-zinc-100 flex items-center gap-2">
+          <h3 className="text-base font-bold text-zinc-950 flex items-center gap-2">
             OBD-II Diagnostic Reader Concept
           </h3>
-          <p className="text-xs text-zinc-400 mt-0.5">
+          <p className="text-xs text-zinc-500 mt-0.5">
             Real-time vehicle telemetry demo based on my automotive software work
           </p>
         </div>
 
         {/* Mode Selector */}
-        <div className="flex items-center gap-1.5 p-1 bg-zinc-900 border border-zinc-800 rounded-lg text-xs">
+        <div className="flex items-center gap-1.5 p-1 bg-zinc-100 border border-zinc-200 rounded-lg text-xs">
           <button
             onClick={() => setMode('normal')}
-            className={`px-2.5 py-1 rounded transition-colors ${
+            className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
               mode === 'normal'
-                ? 'bg-zinc-200 text-zinc-950 font-medium'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-white text-zinc-950 font-medium shadow-2xs'
+                : 'text-zinc-600 hover:text-black'
             }`}
           >
             Normal
           </button>
           <button
             onClick={() => setMode('sport')}
-            className={`px-2.5 py-1 rounded transition-colors ${
+            className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
               mode === 'sport'
-                ? 'bg-zinc-200 text-zinc-950 font-medium'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-white text-zinc-950 font-medium shadow-2xs'
+                : 'text-zinc-600 hover:text-black'
             }`}
           >
             High Revs
           </button>
           <button
             onClick={() => setMode('diagnostic')}
-            className={`px-2.5 py-1 rounded transition-colors ${
+            className={`px-2.5 py-1 rounded transition-colors cursor-pointer ${
               mode === 'diagnostic'
-                ? 'bg-red-500 text-white font-medium'
-                : 'text-zinc-400 hover:text-white'
+                ? 'bg-red-600 text-white font-medium shadow-2xs'
+                : 'text-zinc-600 hover:text-black'
             }`}
           >
             Simulate DTC
@@ -106,39 +105,39 @@ export const InteractiveOBDDemo: React.FC = () => {
 
       {/* Gauges Grid */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 my-5">
-        <div className="p-3.5 rounded-lg bg-zinc-900 border border-zinc-800/80">
+        <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200">
           <span className="text-[11px] font-mono text-zinc-500 block uppercase">Speed</span>
           <div className="mt-1 flex items-baseline gap-1">
-            <span className="text-2xl sm:text-3xl font-bold font-mono text-zinc-100">{speed}</span>
-            <span className="text-xs text-zinc-400 font-mono">km/h</span>
+            <span className="text-2xl sm:text-3xl font-bold font-mono text-zinc-950">{speed}</span>
+            <span className="text-xs text-zinc-500 font-mono">km/h</span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-lg bg-zinc-900 border border-zinc-800/80">
+        <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200">
           <span className="text-[11px] font-mono text-zinc-500 block uppercase">Engine RPM</span>
           <div className="mt-1 flex items-baseline gap-1">
-            <span className={`text-2xl sm:text-3xl font-bold font-mono ${rpm > 4500 ? 'text-amber-400' : 'text-zinc-100'}`}>
+            <span className={`text-2xl sm:text-3xl font-bold font-mono ${rpm > 4500 ? 'text-amber-600' : 'text-zinc-950'}`}>
               {rpm}
             </span>
-            <span className="text-xs text-zinc-400 font-mono">rpm</span>
+            <span className="text-xs text-zinc-500 font-mono">rpm</span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-lg bg-zinc-900 border border-zinc-800/80">
+        <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200">
           <span className="text-[11px] font-mono text-zinc-500 block uppercase">Coolant Temp</span>
           <div className="mt-1 flex items-baseline gap-1">
-            <span className={`text-2xl sm:text-3xl font-bold font-mono ${coolant > 100 ? 'text-red-400' : 'text-zinc-100'}`}>
+            <span className={`text-2xl sm:text-3xl font-bold font-mono ${coolant > 100 ? 'text-red-600' : 'text-zinc-950'}`}>
               {coolant}
             </span>
-            <span className="text-xs text-zinc-400 font-mono">°C</span>
+            <span className="text-xs text-zinc-500 font-mono">°C</span>
           </div>
         </div>
 
-        <div className="p-3.5 rounded-lg bg-zinc-900 border border-zinc-800/80">
+        <div className="p-3.5 rounded-lg bg-zinc-50 border border-zinc-200">
           <span className="text-[11px] font-mono text-zinc-500 block uppercase">Throttle</span>
           <div className="mt-1 flex items-baseline gap-1">
-            <span className="text-2xl sm:text-3xl font-bold font-mono text-zinc-100">{throttle}</span>
-            <span className="text-xs text-zinc-400 font-mono">%</span>
+            <span className="text-2xl sm:text-3xl font-bold font-mono text-zinc-950">{throttle}</span>
+            <span className="text-xs text-zinc-500 font-mono">%</span>
           </div>
         </div>
       </div>
@@ -146,15 +145,15 @@ export const InteractiveOBDDemo: React.FC = () => {
       {/* Diagnostics / Fault Status & Data Stream */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 text-xs">
         {/* DTC Box */}
-        <div className="p-4 rounded-lg bg-zinc-900 border border-zinc-800">
-          <div className="flex items-center justify-between mb-3 pb-2 border-b border-zinc-800">
-            <span className="font-semibold text-zinc-300">
+        <div className="p-4 rounded-lg bg-zinc-50 border border-zinc-200">
+          <div className="flex items-center justify-between mb-3 pb-2 border-b border-zinc-200">
+            <span className="font-semibold text-zinc-900">
               Diagnostic Trouble Codes (DTC)
             </span>
             {dtcCodes.length > 0 && (
               <button
                 onClick={clearDtc}
-                className="text-[11px] px-2 py-0.5 rounded bg-zinc-800 text-zinc-300 hover:text-white border border-zinc-700"
+                className="text-[11px] px-2 py-0.5 rounded bg-white text-zinc-800 hover:text-black border border-zinc-300 shadow-2xs cursor-pointer"
               >
                 Clear DTC
               </button>
@@ -162,35 +161,35 @@ export const InteractiveOBDDemo: React.FC = () => {
           </div>
 
           {dtcCodes.length === 0 ? (
-            <div className="text-zinc-400 py-2">
-              <span className="text-emerald-400 font-medium">✓ No fault codes stored</span> (ECU systems normal)
+            <div className="text-zinc-600 py-2">
+              <span className="text-emerald-600 font-medium">✓ No fault codes stored</span> (ECU systems normal)
             </div>
           ) : (
             <div className="space-y-1.5">
               {dtcCodes.map((dtc, i) => (
-                <div key={i} className="p-2 rounded bg-red-950/30 border border-red-900/40 text-red-300 font-mono text-xs">
+                <div key={i} className="p-2 rounded bg-red-50 border border-red-200 text-red-700 font-mono text-xs">
                   {dtc}
                 </div>
               ))}
             </div>
           )}
 
-          <div className="mt-4 pt-2 border-t border-zinc-800/80 text-[11px] text-zinc-500 flex justify-between">
-            <span>Battery: <strong className="text-zinc-300 font-mono">{voltage}V</strong></span>
-            <span>Protocol: <strong className="text-zinc-300 font-mono">ISO 15765-4 (CAN)</strong></span>
+          <div className="mt-4 pt-2 border-t border-zinc-200 text-[11px] text-zinc-500 flex justify-between">
+            <span>Battery: <strong className="text-zinc-900 font-mono">{voltage}V</strong></span>
+            <span>Protocol: <strong className="text-zinc-900 font-mono">ISO 15765-4 (CAN)</strong></span>
           </div>
         </div>
 
         {/* Live Packet Log */}
-        <div className="p-4 rounded-lg bg-zinc-900 border border-zinc-800 font-mono text-xs">
-          <div className="pb-2 mb-3 border-b border-zinc-800 text-zinc-400 font-semibold">
+        <div className="p-4 rounded-lg bg-zinc-50 border border-zinc-200 font-mono text-xs">
+          <div className="pb-2 mb-3 border-b border-zinc-200 text-zinc-800 font-semibold">
             CAN-Bus Packet Stream
           </div>
-          <div className="space-y-1.5 text-zinc-400">
+          <div className="space-y-1.5 text-zinc-600">
             {logPackets.map((pkt, i) => (
               <div key={i} className="text-[11px] truncate">
-                <span className="text-zinc-600 mr-1.5">›</span>
-                <span className={i === 0 ? 'text-zinc-200' : 'text-zinc-500'}>{pkt}</span>
+                <span className="text-zinc-400 mr-1.5">›</span>
+                <span className={i === 0 ? 'text-zinc-950 font-medium' : 'text-zinc-500'}>{pkt}</span>
               </div>
             ))}
           </div>

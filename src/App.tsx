@@ -28,7 +28,7 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#09090b] text-zinc-100 flex flex-col font-sans selection:bg-zinc-800 selection:text-white">
+    <div className="min-h-screen bg-white text-zinc-900 flex flex-col font-sans selection:bg-zinc-200 selection:text-zinc-900">
       {/* Navbar */}
       <Navbar
         onOpenResume={() => setIsResumeOpen(true)}
@@ -50,14 +50,14 @@ export const App: React.FC = () => {
         <Projects />
 
         {/* 3D AR Solar System Demo */}
-        <section id="solarsystem" className="py-20 border-b border-zinc-900">
+        <section id="solarsystem" className="py-20 border-b border-zinc-100 bg-zinc-50/50">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10">
               <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">3D Simulation</span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mt-1">
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mt-1">
                 Unity AR Solar System (3D Port)
               </h2>
-              <p className="mt-2 text-sm text-zinc-400">
+              <p className="mt-2 text-sm text-zinc-600">
                 Interactive WebGL model demonstrating planetary orbits and spatial scale from my academic AR project.
               </p>
             </div>
@@ -67,14 +67,14 @@ export const App: React.FC = () => {
         </section>
 
         {/* OBD-II Telemetry Dashboard */}
-        <section id="telemetry" className="py-20 border-b border-zinc-900">
+        <section id="telemetry" className="py-20 border-b border-zinc-100 bg-white">
           <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
             <div className="mb-10">
               <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Automotive Diagnostics</span>
-              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mt-1">
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-900 mt-1">
                 OBD-II Telemetry Reader Concept
               </h2>
-              <p className="mt-2 text-sm text-zinc-400">
+              <p className="mt-2 text-sm text-zinc-600">
                 An interactive interface concept for parsing vehicle speed, RPM, and diagnostic trouble codes (DTCs).
               </p>
             </div>

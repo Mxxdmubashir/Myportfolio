@@ -29,16 +29,16 @@ export const Contact: React.FC = () => {
   };
 
   return (
-    <section id="contact" className="py-20">
+    <section id="contact" className="py-20 bg-white">
       <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="mb-12">
           <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Contact</span>
-          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mt-1">
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-950 mt-1">
             Let's work together
           </h2>
-          <p className="mt-2 text-sm text-zinc-400">
+          <p className="mt-2 text-sm text-zinc-600">
             Have a project, freelance inquiry, or an internship opportunity? Reach out directly.
           </p>
         </div>
@@ -49,14 +49,14 @@ export const Contact: React.FC = () => {
           <div className="lg:col-span-5 space-y-3">
             <a
               href={`mailto:${personalInfo.email}`}
-              className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-900 text-zinc-300 hover:text-white transition-colors"
+              className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-200 bg-zinc-50/70 hover:bg-zinc-100/70 text-zinc-800 transition-colors shadow-2xs"
             >
-              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-300">
+              <div className="w-9 h-9 rounded-lg bg-white border border-zinc-200 flex items-center justify-center text-zinc-700 shadow-2xs">
                 <Icons.Mail className="w-4 h-4" />
               </div>
               <div className="truncate">
                 <span className="text-[11px] text-zinc-500 block">Email</span>
-                <span className="text-xs font-medium text-zinc-200 truncate">{personalInfo.email}</span>
+                <span className="text-xs font-medium text-zinc-900 truncate">{personalInfo.email}</span>
               </div>
             </a>
 
@@ -64,14 +64,14 @@ export const Contact: React.FC = () => {
               href={personalInfo.whatsapp}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-900 text-zinc-300 hover:text-white transition-colors"
+              className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-200 bg-zinc-50/70 hover:bg-zinc-100/70 text-zinc-800 transition-colors shadow-2xs"
             >
-              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center text-emerald-400">
+              <div className="w-9 h-9 rounded-lg bg-white border border-zinc-200 flex items-center justify-center text-emerald-600 shadow-2xs">
                 <Icons.MessageCircle className="w-4 h-4" />
               </div>
               <div>
                 <span className="text-[11px] text-zinc-500 block">WhatsApp</span>
-                <span className="text-xs font-medium text-zinc-200">+91 96053 42418 (Direct)</span>
+                <span className="text-xs font-medium text-zinc-900">+91 96053 42418 (Direct)</span>
               </div>
             </a>
 
@@ -79,34 +79,34 @@ export const Contact: React.FC = () => {
               href={personalInfo.github}
               target="_blank"
               rel="noreferrer"
-              className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-900 text-zinc-300 hover:text-white transition-colors"
+              className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-200 bg-zinc-50/70 hover:bg-zinc-100/70 text-zinc-800 transition-colors shadow-2xs"
             >
-              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-300">
+              <div className="w-9 h-9 rounded-lg bg-white border border-zinc-200 flex items-center justify-center text-zinc-700 shadow-2xs">
                 <Icons.Github className="w-4 h-4" />
               </div>
               <div>
                 <span className="text-[11px] text-zinc-500 block">GitHub</span>
-                <span className="text-xs font-medium text-zinc-200">github.com/Mxxdmubashir</span>
+                <span className="text-xs font-medium text-zinc-900">github.com/Mxxdmubashir</span>
               </div>
             </a>
 
-            <div className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900/40 text-zinc-400">
-              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400">
+            <div className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-200 bg-zinc-50/70 text-zinc-600 shadow-2xs">
+              <div className="w-9 h-9 rounded-lg bg-white border border-zinc-200 flex items-center justify-center text-zinc-500 shadow-2xs">
                 <Icons.MapPin className="w-4 h-4" />
               </div>
               <div>
                 <span className="text-[11px] text-zinc-500 block">Location</span>
-                <span className="text-xs text-zinc-300">DBI Skill Park, Markaz Knowledge City, Kerala</span>
+                <span className="text-xs text-zinc-800 font-medium">DBI Skill Park, Markaz Knowledge City, Kerala</span>
               </div>
             </div>
           </div>
 
           {/* Form */}
-          <div className="lg:col-span-7 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
-            <h3 className="text-sm font-semibold text-zinc-200 mb-4">Send a message</h3>
+          <div className="lg:col-span-7 rounded-xl border border-zinc-200 bg-white p-6 shadow-sm">
+            <h3 className="text-sm font-semibold text-zinc-900 mb-4">Send a message</h3>
 
             {sent && (
-              <div className="mb-4 p-3 rounded-lg bg-zinc-800 border border-zinc-700 text-xs text-zinc-300">
+              <div className="mb-4 p-3 rounded-lg bg-zinc-50 border border-zinc-200 text-xs text-zinc-700">
                 Your email client was opened. You can also message directly on WhatsApp.
               </div>
             )}
@@ -114,35 +114,35 @@ export const Contact: React.FC = () => {
             <form onSubmit={handleSubmit} className="space-y-4 text-xs">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-zinc-400 mb-1">Your Name</label>
+                  <label className="block text-zinc-600 font-medium mb-1">Your Name</label>
                   <input
                     type="text"
                     required
                     value={formData.name}
                     onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                     placeholder="Alex"
-                    className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 placeholder-zinc-500 focus:border-zinc-600 focus:outline-none"
+                    className="w-full px-3 py-2 rounded-lg bg-zinc-50 border border-zinc-200 text-zinc-900 placeholder-zinc-400 focus:border-zinc-400 focus:bg-white focus:outline-none"
                   />
                 </div>
                 <div>
-                  <label className="block text-zinc-400 mb-1">Your Email</label>
+                  <label className="block text-zinc-600 font-medium mb-1">Your Email</label>
                   <input
                     type="email"
                     required
                     value={formData.email}
                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                     placeholder="alex@example.com"
-                    className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 placeholder-zinc-500 focus:border-zinc-600 focus:outline-none"
+                    className="w-full px-3 py-2 rounded-lg bg-zinc-50 border border-zinc-200 text-zinc-900 placeholder-zinc-400 focus:border-zinc-400 focus:bg-white focus:outline-none"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-zinc-400 mb-1">What do you need?</label>
+                <label className="block text-zinc-600 font-medium mb-1">What do you need?</label>
                 <select
                   value={formData.need}
                   onChange={(e) => setFormData({ ...formData, need: e.target.value })}
-                  className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 focus:border-zinc-600 focus:outline-none"
+                  className="w-full px-3 py-2 rounded-lg bg-zinc-50 border border-zinc-200 text-zinc-900 focus:border-zinc-400 focus:bg-white focus:outline-none"
                 >
                   <option value="Web Application">Web Application</option>
                   <option value="Internship / Full-time Role">Internship or Developer Role</option>
@@ -153,28 +153,28 @@ export const Contact: React.FC = () => {
               </div>
 
               <div>
-                <label className="block text-zinc-400 mb-1">Message</label>
+                <label className="block text-zinc-600 font-medium mb-1">Message</label>
                 <textarea
                   rows={4}
                   required
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   placeholder="Tell me about your project or role..."
-                  className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 placeholder-zinc-500 focus:border-zinc-600 focus:outline-none resize-none"
+                  className="w-full px-3 py-2 rounded-lg bg-zinc-50 border border-zinc-200 text-zinc-900 placeholder-zinc-400 focus:border-zinc-400 focus:bg-white focus:outline-none resize-none"
                 />
               </div>
 
               <div className="flex flex-wrap gap-2 pt-1">
                 <button
                   type="submit"
-                  className="px-4 py-2 rounded-lg bg-zinc-100 hover:bg-white text-zinc-950 font-medium text-xs transition-colors cursor-pointer"
+                  className="px-4 py-2 rounded-lg bg-zinc-900 hover:bg-zinc-800 text-white font-medium text-xs transition-colors cursor-pointer shadow-xs"
                 >
                   Send via Email
                 </button>
                 <button
                   type="button"
                   onClick={handleWhatsApp}
-                  className="px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white font-medium text-xs transition-colors cursor-pointer"
+                  className="px-4 py-2 rounded-lg border border-zinc-200 bg-white hover:bg-zinc-50 text-zinc-800 font-medium text-xs transition-colors cursor-pointer shadow-2xs"
                 >
                   Chat on WhatsApp
                 </button>

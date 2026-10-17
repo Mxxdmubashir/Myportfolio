@@ -38,7 +38,7 @@ export const ProfileAvatar: React.FC = () => {
         onClick={() => fileInputRef.current?.click()}
         title="Click to upload your photo"
       >
-        <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl border border-zinc-800 bg-zinc-900 overflow-hidden shadow-lg transition-all duration-200 group-hover:border-zinc-600">
+        <div className="w-40 h-40 sm:w-48 sm:h-48 rounded-2xl border border-zinc-200 bg-zinc-50 overflow-hidden shadow-sm transition-all duration-200 group-hover:border-zinc-400">
           {photoUrl ? (
             <img
               src={photoUrl}
@@ -46,17 +46,17 @@ export const ProfileAvatar: React.FC = () => {
               className="w-full h-full object-cover object-center"
             />
           ) : (
-            <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-900 text-zinc-300 p-4 select-none">
-              <div className="w-16 h-16 rounded-xl bg-zinc-800 border border-zinc-700/60 flex items-center justify-center text-zinc-100 font-bold text-2xl mb-2">
+            <div className="w-full h-full flex flex-col items-center justify-center bg-zinc-50 text-zinc-700 p-4 select-none">
+              <div className="w-16 h-16 rounded-xl bg-zinc-200/80 border border-zinc-300 flex items-center justify-center text-zinc-800 font-bold text-2xl mb-2 shadow-2xs">
                 MM
               </div>
-              <span className="text-xs font-medium text-zinc-300">Muhammed Mubashir</span>
+              <span className="text-xs font-semibold text-zinc-900">Muhammed Mubashir</span>
               <span className="text-[11px] text-zinc-500 mt-0.5">Click to add photo</span>
             </div>
           )}
 
           {/* Hover overlay with clean camera prompt */}
-          <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1.5 text-white">
+          <div className="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity flex flex-col items-center justify-center gap-1.5 text-white">
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-zinc-200">
               <path d="M14.5 4h-5L7 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-3l-2.5-3z"/>
               <circle cx="12" cy="13" r="3"/>
@@ -66,7 +66,7 @@ export const ProfileAvatar: React.FC = () => {
             {photoUrl && (
               <button
                 onClick={handleResetPhoto}
-                className="text-[10px] text-zinc-400 hover:text-white underline mt-1"
+                className="text-[10px] text-zinc-200 hover:text-white underline mt-1"
               >
                 Reset
               </button>
@@ -83,7 +83,7 @@ export const ProfileAvatar: React.FC = () => {
         </div>
 
         {/* Clean status badge */}
-        <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-zinc-900 border border-zinc-700/80 shadow-md flex items-center gap-1.5 text-[11px] text-zinc-300 whitespace-nowrap">
+        <div className="absolute -bottom-2.5 left-1/2 -translate-x-1/2 px-2.5 py-0.5 rounded-full bg-white border border-zinc-200 shadow-sm flex items-center gap-1.5 text-[11px] text-zinc-700 whitespace-nowrap">
           <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
           <span>Available for work</span>
         </div>
@@ -91,7 +91,7 @@ export const ProfileAvatar: React.FC = () => {
 
       <div className="mt-5 text-center">
         <p className="text-xs text-zinc-500">
-          Software Developer at <span className="text-zinc-300 font-medium">Ziqx</span>
+          Software Developer at <span className="text-zinc-800 font-medium">Ziqx</span>
         </p>
       </div>
     </div>

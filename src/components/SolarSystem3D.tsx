@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
-import { Icons } from './Icons';
 
 interface PlanetData {
   name: string;
@@ -93,7 +92,7 @@ export const SolarSystem3D: React.FC = () => {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     container.replaceChildren(renderer.domElement);
 
-    const ambientLight = new THREE.AmbientLight(0x27272a, 1.5);
+    const ambientLight = new THREE.AmbientLight(0x3f3f46, 1.5);
     scene.add(ambientLight);
 
     const sunLight = new THREE.PointLight(0xfff5eb, 3.2, 300, 0.5);
@@ -111,7 +110,7 @@ export const SolarSystem3D: React.FC = () => {
     }
     starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
     const starMaterial = new THREE.PointsMaterial({
-      color: 0x71717a,
+      color: 0xa1a1aa,
       size: 0.7,
       transparent: true,
       opacity: 0.5
@@ -140,9 +139,9 @@ export const SolarSystem3D: React.FC = () => {
         points.map(p => new THREE.Vector3(p.x, 0, p.y))
       );
       const orbitMat = new THREE.LineBasicMaterial({
-        color: 0x3f3f46,
+        color: 0x52525b,
         transparent: true,
-        opacity: 0.3
+        opacity: 0.35
       });
       scene.add(new THREE.Line(orbitGeom, orbitMat));
 
@@ -161,7 +160,7 @@ export const SolarSystem3D: React.FC = () => {
 
       if (planet.hasMoon) {
         const moonGeom = new THREE.SphereGeometry(0.3, 16, 16);
-        const moonMat = new THREE.MeshStandardMaterial({ color: 0x999999, roughness: 0.9 });
+        const moonMat = new THREE.MeshStandardMaterial({ color: 0xbbbbbb, roughness: 0.9 });
         const moonMesh = new THREE.Mesh(moonGeom, moonMat);
         moonMesh.position.x = 2.0;
         pMesh.add(moonMesh);
@@ -255,11 +254,11 @@ export const SolarSystem3D: React.FC = () => {
   }, [isPaused, renderMode]);
 
   return (
-    <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+    <div className="rounded-xl border border-zinc-200 bg-white overflow-hidden shadow-xs">
       {/* Header Bar */}
-      <div className="px-5 py-3.5 bg-zinc-900/60 border-b border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+      <div className="px-5 py-3.5 bg-zinc-50 border-b border-zinc-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h3 className="text-sm font-semibold text-zinc-200">
+          <h3 className="text-sm font-semibold text-zinc-900">
             Unity AR Solar System (WebGL Preview)
           </h3>
           <p className="text-xs text-zinc-500">
@@ -272,8 +271,8 @@ export const SolarSystem3D: React.FC = () => {
             onClick={() => setRenderMode(prev => prev === 'realistic' ? 'wireframe' : 'realistic')}
             className={`px-2.5 py-1 rounded text-xs font-medium border transition-colors ${
               renderMode === 'wireframe'
-                ? 'bg-zinc-200 text-zinc-950 border-zinc-300'
-                : 'bg-zinc-800 border-zinc-700 text-zinc-300 hover:text-white'
+                ? 'bg-zinc-900 text-white border-zinc-900'
+                : 'bg-white border-zinc-200 text-zinc-700 hover:text-black shadow-2xs'
             }`}
           >
             {renderMode === 'wireframe' ? 'Wireframe' : 'Standard'}
@@ -281,30 +280,30 @@ export const SolarSystem3D: React.FC = () => {
 
           <button
             onClick={() => setIsPaused(prev => !prev)}
-            className="px-2.5 py-1 rounded border border-zinc-700 bg-zinc-800 text-xs text-zinc-300 hover:text-white"
+            className="px-2.5 py-1 rounded border border-zinc-200 bg-white text-xs text-zinc-700 hover:text-black shadow-2xs cursor-pointer"
           >
             {isPaused ? 'Resume' : 'Pause'}
           </button>
         </div>
       </div>
 
-      {/* 3D Canvas */}
-      <div className="relative w-full h-[380px] sm:h-[420px] cursor-grab active:cursor-grabbing bg-zinc-950">
+      {/* 3D Canvas in deep space viewport */}
+      <div className="relative w-full h-[380px] sm:h-[420px] cursor-grab active:cursor-grabbing bg-[#09090b]">
         <div ref={mountRef} className="w-full h-full" />
 
-        <div className="absolute top-3 left-3 text-[11px] font-mono text-zinc-500 pointer-events-none">
+        <div className="absolute top-3 left-3 text-[11px] font-mono text-zinc-400 pointer-events-none">
           Click & drag to rotate • Scroll to zoom
         </div>
 
         {/* Planet Selector */}
-        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 p-1 bg-zinc-900/90 rounded-lg border border-zinc-800 text-xs">
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 p-1 bg-zinc-900/90 rounded-lg border border-zinc-700 text-xs">
           {PLANETS.map((planet) => (
             <button
               key={planet.name}
               onClick={() => setSelectedPlanet(planet)}
-              className={`px-2.5 py-1 rounded text-xs transition-colors ${
+              className={`px-2.5 py-1 rounded text-xs transition-colors cursor-pointer ${
                 selectedPlanet.name === planet.name
-                  ? 'bg-zinc-200 text-zinc-950 font-medium'
+                  ? 'bg-white text-zinc-950 font-medium'
                   : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
@@ -315,18 +314,18 @@ export const SolarSystem3D: React.FC = () => {
       </div>
 
       {/* Selected Planet Stats */}
-      <div className="p-4 bg-zinc-900/80 border-t border-zinc-800 grid grid-cols-3 gap-3 text-xs">
+      <div className="p-4 bg-zinc-50 border-t border-zinc-200 grid grid-cols-3 gap-3 text-xs">
         <div>
           <span className="text-zinc-500 block">Planet</span>
-          <span className="text-zinc-200 font-medium">{selectedPlanet.name}</span>
+          <span className="text-zinc-900 font-semibold">{selectedPlanet.name}</span>
         </div>
         <div>
           <span className="text-zinc-500 block">Diameter</span>
-          <span className="text-zinc-200 font-medium">{selectedPlanet.specs.diameter}</span>
+          <span className="text-zinc-900 font-semibold">{selectedPlanet.specs.diameter}</span>
         </div>
         <div>
           <span className="text-zinc-500 block">Orbit Period</span>
-          <span className="text-zinc-200 font-medium">{selectedPlanet.specs.orbitPeriod}</span>
+          <span className="text-zinc-900 font-semibold">{selectedPlanet.specs.orbitPeriod}</span>
         </div>
       </div>
     </div>

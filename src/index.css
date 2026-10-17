@@ -3,9 +3,9 @@
 @layer base {
   body {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    color-scheme: dark;
-    background-color: #09090b;
-    color: #f4f4f5;
+    color-scheme: light;
+    background-color: #ffffff;
+    color: #18181b;
   }
   
   code, pre, .font-mono {
@@ -13,21 +13,16 @@
   }
 }
 
-/* Tasteful, human-crafted clean surfaces */
+/* Tasteful clean white surfaces */
 .clean-card {
-  background-color: #121215;
-  border: 1px solid #27272a;
+  background-color: #ffffff;
+  border: 1px solid #e4e4e7;
   transition: all 0.2s ease-in-out;
 }
 
 .clean-card:hover {
-  border-color: #3f3f46;
-  background-color: #18181b;
-}
-
-.clean-panel {
-  background-color: #101013;
-  border: 1px solid #222226;
+  border-color: #d4d4d8;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
 }
 
 /* Subtle scrollbar */
@@ -36,12 +31,12 @@
   height: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #09090b;
+  background: #ffffff;
 }
 ::-webkit-scrollbar-thumb {
-  background: #27272a;
+  background: #d4d4d8;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #3f3f46;
+  background: #a1a1aa;
 }
