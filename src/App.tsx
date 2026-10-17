@@ -6,19 +6,16 @@ import { Skills } from './components/Skills';
 import { Projects } from './components/Projects';
 import { SolarSystem3D } from './components/SolarSystem3D';
 import { InteractiveOBDDemo } from './components/InteractiveOBDDemo';
-import { ApiPlayground } from './components/ApiPlayground';
 import { Experience } from './components/Experience';
 import { Contact } from './components/Contact';
 import { Footer } from './components/Footer';
 import { ResumeModal } from './components/ResumeModal';
 import { CommandPalette } from './components/CommandPalette';
-import { Icons } from './components/Icons';
 
 export const App: React.FC = () => {
   const [isResumeOpen, setIsResumeOpen] = useState(false);
   const [isCommandPaletteOpen, setIsCommandPaletteOpen] = useState(false);
 
-  // Global Ctrl+K / Cmd+K listener
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
@@ -31,91 +28,62 @@ export const App: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-[#030712] text-slate-100 flex flex-col font-sans selection:bg-cyan-500 selection:text-slate-950">
-      {/* Top Navbar */}
+    <div className="min-h-screen bg-[#09090b] text-zinc-100 flex flex-col font-sans selection:bg-zinc-800 selection:text-white">
+      {/* Navbar */}
       <Navbar
         onOpenResume={() => setIsResumeOpen(true)}
         onOpenCommandPalette={() => setIsCommandPaletteOpen(true)}
       />
 
-      {/* Main Page Flow */}
+      {/* Main Content */}
       <main className="flex-grow">
-        {/* Hero with 3D Profile Avatar & Terminal HUD */}
+        {/* Hero */}
         <Hero onOpenResume={() => setIsResumeOpen(true)} />
 
-        {/* About Me */}
+        {/* About */}
         <About />
 
-        {/* Technical Skills */}
+        {/* Skills */}
         <Skills />
 
-        {/* Featured Projects with Live Search & Modals */}
+        {/* Projects */}
         <Projects />
 
-        {/* 3D AR Solar System Simulator (WebGL / Three.js) */}
-        <section id="solarsystem" className="py-20 relative bg-slate-950/70 border-t border-slate-800/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-purple-500/10 border border-purple-500/20 text-purple-400 text-xs font-semibold uppercase tracking-wider mb-3">
-                <Icons.Globe className="w-3.5 h-3.5" />
-                <span>Augmented & Virtual Reality</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                3D Planetary Motion & AR Simulation
+        {/* 3D AR Solar System Demo */}
+        <section id="solarsystem" className="py-20 border-b border-zinc-900">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-10">
+              <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">3D Simulation</span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mt-1">
+                Unity AR Solar System (3D Port)
               </h2>
-              <p className="mt-4 text-slate-400 text-base sm:text-lg">
-                Interactive WebGL 3D simulation inspired by my Unity AR Solar System project. Drag to inspect orbits, inspect planetary telemetry, or toggle wireframe mesh mode.
+              <p className="mt-2 text-sm text-zinc-400">
+                Interactive WebGL model demonstrating planetary orbits and spatial scale from my academic AR project.
               </p>
             </div>
 
-            {/* Interactive 3D Canvas */}
             <SolarSystem3D />
           </div>
         </section>
 
-        {/* Live Automotive Telemetry Showcase (OBD-II) */}
-        <section id="telemetry" className="py-20 relative bg-slate-950/50 border-t border-slate-800/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
-                <Icons.Gauge className="w-3.5 h-3.5" />
-                <span>Automotive Telemetry Engine</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                Interactive OBD-II Telemetry Dashboard
+        {/* OBD-II Telemetry Dashboard */}
+        <section id="telemetry" className="py-20 border-b border-zinc-900">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="mb-10">
+              <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Automotive Diagnostics</span>
+              <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mt-1">
+                OBD-II Telemetry Reader Concept
               </h2>
-              <p className="mt-4 text-slate-400 text-base sm:text-lg">
-                Bridging automotive sensor networks with responsive frontend interfaces. Test live CAN-bus telemetry, simulate high-rev sport mode, or trigger and clear DTC diagnostic fault codes.
+              <p className="mt-2 text-sm text-zinc-400">
+                An interactive interface concept for parsing vehicle speed, RPM, and diagnostic trouble codes (DTCs).
               </p>
             </div>
 
-            {/* Live Interactive Telemetry Widget */}
             <InteractiveOBDDemo />
           </div>
         </section>
 
-        {/* Backend REST API Sandbox */}
-        <section id="api" className="py-20 relative bg-slate-950/80 border-t border-slate-800/80">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div className="text-center max-w-3xl mx-auto mb-12">
-              <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400 text-xs font-semibold uppercase tracking-wider mb-3">
-                <Icons.Server className="w-3.5 h-3.5" />
-                <span>REST API Architecture</span>
-              </div>
-              <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-                Interactive Developer API Sandbox
-              </h2>
-              <p className="mt-4 text-slate-400 text-base sm:text-lg">
-                I build high-performance backend microservices with Node.js, Express, and PostgreSQL. Test live simulated requests with real HTTP response codes and latencies.
-              </p>
-            </div>
-
-            {/* Live API Tester */}
-            <ApiPlayground />
-          </div>
-        </section>
-
-        {/* Experience & Certifications */}
+        {/* Experience & Education */}
         <Experience />
 
         {/* Contact */}
@@ -131,7 +99,7 @@ export const App: React.FC = () => {
         onClose={() => setIsResumeOpen(false)}
       />
 
-      {/* Command Palette (Ctrl+K) */}
+      {/* Command Palette */}
       <CommandPalette
         isOpen={isCommandPaletteOpen}
         onClose={() => setIsCommandPaletteOpen(false)}

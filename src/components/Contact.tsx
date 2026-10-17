@@ -6,271 +6,180 @@ export const Contact: React.FC = () => {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
-    phone: '',
-    service: 'Full-Stack Web App',
+    need: 'Web Application',
     message: ''
   });
-  const [submitted, setSubmitted] = useState(false);
+  const [sent, setSent] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleEmailSubmit = (e: React.FormEvent) => {
+  const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    const subject = encodeURIComponent(`Portfolio Inquiry from ${formData.name || 'Client'}: ${formData.service}`);
+    const subject = encodeURIComponent(`Message from ${formData.name || 'Visitor'}: ${formData.need}`);
     const body = encodeURIComponent(
-      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone || 'N/A'}\nNeed: ${formData.service}\n\nMessage:\n${formData.message}`
+      `Name: ${formData.name}\nEmail: ${formData.email}\nNeed: ${formData.need}\n\nMessage:\n${formData.message}`
     );
     window.location.href = `mailto:${personalInfo.email}?subject=${subject}&body=${body}`;
-    setSubmitted(true);
+    setSent(true);
   };
 
-  const handleWhatsAppSubmit = () => {
+  const handleWhatsApp = () => {
     const text = encodeURIComponent(
-      `Hi Mubashir, I came across your portfolio.\nName: ${formData.name || 'Guest'}\nNeed: ${formData.service}\n${formData.message ? `Message: ${formData.message}` : ''}`
+      `Hi Mubashir,\nName: ${formData.name || 'Friend'}\nNeed: ${formData.need}\n${formData.message ? `Message: ${formData.message}` : ''}`
     );
     window.open(`https://wa.me/919605342418?text=${text}`, '_blank');
   };
 
   return (
-    <section id="contact" className="py-20 relative">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="contact" className="py-20">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Icons.Mail className="w-3.5 h-3.5" />
-            <span>Get In Touch</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Let's Build Something Exceptional Together
+        <div className="mb-12">
+          <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Contact</span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mt-1">
+            Let's work together
           </h2>
-          <p className="mt-4 text-slate-400 text-base sm:text-lg">
-            Available for software developer internships, full-time engineering roles, and custom web application development.
+          <p className="mt-2 text-sm text-zinc-400">
+            Have a project, freelance inquiry, or an internship opportunity? Reach out directly.
           </p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           
-          {/* Left Column: Direct Contact Info & Highlights */}
-          <div className="lg:col-span-5 space-y-6">
-            
-            <div className="glass-panel rounded-2xl p-6 sm:p-8 space-y-6 border border-slate-800">
-              <h3 className="text-xl font-bold text-white">Direct Contacts</h3>
-              
-              <div className="space-y-4">
-                {/* Email */}
-                <a
-                  href={`mailto:${personalInfo.email}`}
-                  className="flex items-center gap-4 p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-cyan-500/40 text-slate-300 hover:text-white transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <Icons.Mail className="w-5 h-5" />
-                  </div>
-                  <div className="truncate">
-                    <div className="text-[11px] font-mono text-slate-400 uppercase">Email Address</div>
-                    <div className="text-sm font-semibold truncate text-white">{personalInfo.email}</div>
-                  </div>
-                </a>
+          {/* Direct Channels */}
+          <div className="lg:col-span-5 space-y-3">
+            <a
+              href={`mailto:${personalInfo.email}`}
+              className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-900 text-zinc-300 hover:text-white transition-colors"
+            >
+              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-300">
+                <Icons.Mail className="w-4 h-4" />
+              </div>
+              <div className="truncate">
+                <span className="text-[11px] text-zinc-500 block">Email</span>
+                <span className="text-xs font-medium text-zinc-200 truncate">{personalInfo.email}</span>
+              </div>
+            </a>
 
-                {/* Phone */}
-                <a
-                  href={`tel:${personalInfo.phone}`}
-                  className="flex items-center gap-4 p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-cyan-500/40 text-slate-300 hover:text-white transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <Icons.Phone className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[11px] font-mono text-slate-400 uppercase">Phone & Mobile</div>
-                    <div className="text-sm font-semibold text-white">{personalInfo.phone}</div>
-                  </div>
-                </a>
+            <a
+              href={personalInfo.whatsapp}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-900 text-zinc-300 hover:text-white transition-colors"
+            >
+              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center text-emerald-400">
+                <Icons.MessageCircle className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="text-[11px] text-zinc-500 block">WhatsApp</span>
+                <span className="text-xs font-medium text-zinc-200">+91 96053 42418 (Direct)</span>
+              </div>
+            </a>
 
-                {/* WhatsApp */}
-                <a
-                  href={personalInfo.whatsapp}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-4 p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-emerald-500/40 text-slate-300 hover:text-white transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <Icons.MessageCircle className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[11px] font-mono text-slate-400 uppercase">WhatsApp Instant Chat</div>
-                    <div className="text-sm font-semibold text-emerald-400">+91 96053 42418 (Direct)</div>
-                  </div>
-                </a>
+            <a
+              href={personalInfo.github}
+              target="_blank"
+              rel="noreferrer"
+              className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900/40 hover:bg-zinc-900 text-zinc-300 hover:text-white transition-colors"
+            >
+              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-300">
+                <Icons.Github className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="text-[11px] text-zinc-500 block">GitHub</span>
+                <span className="text-xs font-medium text-zinc-200">github.com/Mxxdmubashir</span>
+              </div>
+            </a>
 
-                {/* GitHub */}
-                <a
-                  href={personalInfo.github}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="flex items-center gap-4 p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 hover:border-purple-500/40 text-slate-300 hover:text-white transition-all group"
-                >
-                  <div className="w-10 h-10 rounded-lg bg-purple-500/10 text-purple-400 border border-purple-500/20 flex items-center justify-center group-hover:scale-105 transition-transform">
-                    <Icons.Github className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[11px] font-mono text-slate-400 uppercase">GitHub Profile</div>
-                    <div className="text-sm font-semibold text-white">github.com/Mxxdmubashir</div>
-                  </div>
-                </a>
-
-                {/* Location */}
-                <div className="flex items-center gap-4 p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 text-slate-300">
-                  <div className="w-10 h-10 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20 flex items-center justify-center shrink-0">
-                    <Icons.MapPin className="w-5 h-5" />
-                  </div>
-                  <div>
-                    <div className="text-[11px] font-mono text-slate-400 uppercase">Current Office & Base</div>
-                    <div className="text-xs text-slate-200 leading-snug">
-                      DBI Skill Park, Markaz Knowledge City, Kaithappoyil, Kerala
-                    </div>
-                  </div>
-                </div>
+            <div className="flex items-center gap-3.5 p-3.5 rounded-xl border border-zinc-800 bg-zinc-900/40 text-zinc-400">
+              <div className="w-9 h-9 rounded-lg bg-zinc-800 flex items-center justify-center text-zinc-400">
+                <Icons.MapPin className="w-4 h-4" />
+              </div>
+              <div>
+                <span className="text-[11px] text-zinc-500 block">Location</span>
+                <span className="text-xs text-zinc-300">DBI Skill Park, Markaz Knowledge City, Kerala</span>
               </div>
             </div>
-
-            {/* Quick Availability Badge */}
-            <div className="rounded-xl border border-emerald-500/20 bg-emerald-950/20 p-4 flex items-center gap-3">
-              <span className="w-3 h-3 rounded-full bg-emerald-400 animate-ping shrink-0" />
-              <div className="text-xs text-emerald-300">
-                <strong>Actively Available:</strong> Open for Software Developer internships, client projects, and engineering opportunities.
-              </div>
-            </div>
-
           </div>
 
-          {/* Right Column: Interactive Contact Form */}
-          <div className="lg:col-span-7">
-            <div className="rounded-2xl border border-slate-800 bg-slate-900/90 p-6 sm:p-8 backdrop-blur-xl shadow-2xl relative">
-              <h3 className="text-xl font-bold text-white mb-2">Send a Direct Message</h3>
-              <p className="text-xs sm:text-sm text-slate-400 mb-6">
-                Fill in your details below to send an email inquiry or initiate a direct chat via WhatsApp.
-              </p>
+          {/* Form */}
+          <div className="lg:col-span-7 rounded-xl border border-zinc-800 bg-zinc-900/40 p-6">
+            <h3 className="text-sm font-semibold text-zinc-200 mb-4">Send a message</h3>
 
-              {submitted && (
-                <div className="mb-6 p-4 rounded-xl bg-emerald-500/10 border border-emerald-500/20 text-emerald-300 text-xs flex items-center gap-2">
-                  <Icons.CheckCircle2 className="w-4 h-4 text-emerald-400 shrink-0" />
-                  <span>Thank you! Your default email client was opened. You can also message me on WhatsApp for immediate response.</span>
-                </div>
-              )}
+            {sent && (
+              <div className="mb-4 p-3 rounded-lg bg-zinc-800 border border-zinc-700 text-xs text-zinc-300">
+                Your email client was opened. You can also message directly on WhatsApp.
+              </div>
+            )}
 
-              <form onSubmit={handleEmailSubmit} className="space-y-4">
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Name */}
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
-                      Your Name <span className="text-cyan-400">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      name="name"
-                      required
-                      value={formData.name}
-                      onChange={handleChange}
-                      placeholder="e.g. Alex Johnson"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white text-sm outline-none transition-all"
-                    />
-                  </div>
-
-                  {/* Email */}
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
-                      Your Email <span className="text-cyan-400">*</span>
-                    </label>
-                    <input
-                      type="email"
-                      name="email"
-                      required
-                      value={formData.email}
-                      onChange={handleChange}
-                      placeholder="alex@company.com"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white text-sm outline-none transition-all"
-                    />
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {/* Phone */}
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
-                      Phone Number (Optional)
-                    </label>
-                    <input
-                      type="tel"
-                      name="phone"
-                      value={formData.phone}
-                      onChange={handleChange}
-                      placeholder="+91 XXXXX XXXXX"
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white text-sm outline-none transition-all"
-                    />
-                  </div>
-
-                  {/* Need / Service */}
-                  <div>
-                    <label className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
-                      What do you need?
-                    </label>
-                    <select
-                      name="service"
-                      value={formData.service}
-                      onChange={handleChange}
-                      className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white text-sm outline-none transition-all"
-                    >
-                      <option value="Full-Stack Web App">Full-Stack Web Application</option>
-                      <option value="Software Developer Internship / Role">Software Developer Hiring / Internship</option>
-                      <option value="Automotive / OBD Dashboard">Automotive Dashboard / Telemetry</option>
-                      <option value="REST API & Backend Development">REST API & Backend Architecture</option>
-                      <option value="Consulting / Freelance Project">Consulting / Freelance Project</option>
-                    </select>
-                  </div>
-                </div>
-
-                {/* Message */}
+            <form onSubmit={handleSubmit} className="space-y-4 text-xs">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 <div>
-                  <label className="block text-xs font-mono uppercase tracking-wider text-slate-300 mb-1.5">
-                    Your Message <span className="text-cyan-400">*</span>
-                  </label>
-                  <textarea
-                    name="message"
+                  <label className="block text-zinc-400 mb-1">Your Name</label>
+                  <input
+                    type="text"
                     required
-                    rows={4}
-                    value={formData.message}
-                    onChange={handleChange}
-                    placeholder="Tell me about your project, timeline, or open role..."
-                    className="w-full px-4 py-2.5 rounded-xl bg-slate-950/80 border border-slate-800 focus:border-cyan-500 focus:ring-1 focus:ring-cyan-500 text-white text-sm outline-none transition-all resize-none"
+                    value={formData.name}
+                    onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                    placeholder="Alex"
+                    className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 placeholder-zinc-500 focus:border-zinc-600 focus:outline-none"
                   />
                 </div>
-
-                {/* Form Buttons */}
-                <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
-                  <button
-                    type="submit"
-                    className="w-full sm:w-auto px-6 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500 text-slate-950 font-bold text-sm tracking-wide shadow-lg shadow-cyan-500/20 hover:scale-[1.02] active:scale-[0.98] transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <Icons.Send className="w-4 h-4" />
-                    <span>Send via Email</span>
-                  </button>
-
-                  <button
-                    type="button"
-                    onClick={handleWhatsAppSubmit}
-                    className="w-full sm:w-auto px-5 py-3 rounded-xl bg-emerald-600/20 border border-emerald-500/40 hover:bg-emerald-600/30 text-emerald-400 font-bold text-sm transition-all flex items-center justify-center gap-2 cursor-pointer"
-                  >
-                    <Icons.MessageCircle className="w-4 h-4" />
-                    <span>Chat on WhatsApp</span>
-                  </button>
+                <div>
+                  <label className="block text-zinc-400 mb-1">Your Email</label>
+                  <input
+                    type="email"
+                    required
+                    value={formData.email}
+                    onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                    placeholder="alex@example.com"
+                    className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 placeholder-zinc-500 focus:border-zinc-600 focus:outline-none"
+                  />
                 </div>
-              </form>
-            </div>
+              </div>
+
+              <div>
+                <label className="block text-zinc-400 mb-1">What do you need?</label>
+                <select
+                  value={formData.need}
+                  onChange={(e) => setFormData({ ...formData, need: e.target.value })}
+                  className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 focus:border-zinc-600 focus:outline-none"
+                >
+                  <option value="Web Application">Web Application</option>
+                  <option value="Internship / Full-time Role">Internship or Developer Role</option>
+                  <option value="Car Telemetry / OBD Dashboard">Car Telemetry / OBD Dashboard</option>
+                  <option value="Backend REST API">Backend REST API</option>
+                  <option value="Freelance Project">Freelance Project</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-zinc-400 mb-1">Message</label>
+                <textarea
+                  rows={4}
+                  required
+                  value={formData.message}
+                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  placeholder="Tell me about your project or role..."
+                  className="w-full px-3 py-2 rounded-lg bg-zinc-900 border border-zinc-800 text-zinc-200 placeholder-zinc-500 focus:border-zinc-600 focus:outline-none resize-none"
+                />
+              </div>
+
+              <div className="flex flex-wrap gap-2 pt-1">
+                <button
+                  type="submit"
+                  className="px-4 py-2 rounded-lg bg-zinc-100 hover:bg-white text-zinc-950 font-medium text-xs transition-colors cursor-pointer"
+                >
+                  Send via Email
+                </button>
+                <button
+                  type="button"
+                  onClick={handleWhatsApp}
+                  className="px-4 py-2 rounded-lg border border-zinc-800 bg-zinc-900 hover:bg-zinc-800 text-zinc-300 hover:text-white font-medium text-xs transition-colors cursor-pointer"
+                >
+                  Chat on WhatsApp
+                </button>
+              </div>
+            </form>
           </div>
 
         </div>
@@ -279,4 +188,3 @@ export const Contact: React.FC = () => {
     </section>
   );
 };
-

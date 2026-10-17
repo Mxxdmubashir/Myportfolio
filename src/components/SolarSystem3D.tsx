@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import * as THREE from 'three';
 import { Icons } from './Icons';
-import { soundFX } from '../utils/sound';
 
 interface PlanetData {
   name: string;
@@ -9,14 +8,12 @@ interface PlanetData {
   distance: number;
   speed: number;
   color: number;
-  emissive?: number;
   hasRings?: boolean;
   hasMoon?: boolean;
   specs: {
     diameter: string;
     orbitPeriod: string;
     atmosphere: string;
-    features: string;
   };
 }
 
@@ -26,131 +23,86 @@ const PLANETS: PlanetData[] = [
     radius: 0.6,
     distance: 7,
     speed: 0.035,
-    color: 0x9e9e9e,
-    specs: {
-      diameter: '4,879 km',
-      orbitPeriod: '88 Days',
-      atmosphere: 'Trace Sodium & Helium',
-      features: 'Extreme surface temperature swings'
-    }
+    color: 0x888888,
+    specs: { diameter: '4,879 km', orbitPeriod: '88 Days', atmosphere: 'None' }
   },
   {
     name: 'Venus',
     radius: 1.1,
     distance: 11,
     speed: 0.025,
-    color: 0xe6b87d,
-    specs: {
-      diameter: '12,104 km',
-      orbitPeriod: '225 Days',
-      atmosphere: 'Dense CO2 & Sulfuric Acid',
-      features: 'Retrograde rotation & runaway greenhouse'
-    }
+    color: 0xd4a373,
+    specs: { diameter: '12,104 km', orbitPeriod: '225 Days', atmosphere: 'CO2 & Sulfuric Acid' }
   },
   {
     name: 'Earth',
     radius: 1.25,
     distance: 16,
     speed: 0.018,
-    color: 0x2277bb,
+    color: 0x2b6cb0,
     hasMoon: true,
-    specs: {
-      diameter: '12,742 km',
-      orbitPeriod: '365.25 Days',
-      atmosphere: 'Nitrogen & Oxygen',
-      features: 'Liquid water oceans & active biosphere'
-    }
+    specs: { diameter: '12,742 km', orbitPeriod: '365 Days', atmosphere: 'Nitrogen & Oxygen' }
   },
   {
     name: 'Mars',
     radius: 0.8,
     distance: 21,
     speed: 0.014,
-    color: 0xcc4422,
-    specs: {
-      diameter: '6,779 km',
-      orbitPeriod: '687 Days',
-      atmosphere: 'Thin CO2',
-      features: 'Olympus Mons & polar ice deposits'
-    }
+    color: 0xc53030,
+    specs: { diameter: '6,779 km', orbitPeriod: '687 Days', atmosphere: 'CO2' }
   },
   {
     name: 'Jupiter',
     radius: 2.8,
     distance: 28,
     speed: 0.009,
-    color: 0xd9a066,
-    specs: {
-      diameter: '139,820 km',
-      orbitPeriod: '11.86 Years',
-      atmosphere: 'Hydrogen & Helium',
-      features: 'Great Red Spot & 95 confirmed moons'
-    }
+    color: 0xdd6b20,
+    specs: { diameter: '139,820 km', orbitPeriod: '11.8 Years', atmosphere: 'Hydrogen & Helium' }
   },
   {
     name: 'Saturn',
     radius: 2.2,
     distance: 36,
     speed: 0.006,
-    color: 0xf3d8a5,
+    color: 0xd69e2e,
     hasRings: true,
-    specs: {
-      diameter: '116,460 km',
-      orbitPeriod: '29.45 Years',
-      atmosphere: 'Hydrogen & Helium',
-      features: 'Iconic planetary ice & rock ring system'
-    }
+    specs: { diameter: '116,460 km', orbitPeriod: '29.5 Years', atmosphere: 'Hydrogen & Helium' }
   }
 ];
 
 export const SolarSystem3D: React.FC = () => {
   const mountRef = useRef<HTMLDivElement>(null);
-  const [selectedPlanet, setSelectedPlanet] = useState<PlanetData>(PLANETS[2]); // Earth default
+  const [selectedPlanet, setSelectedPlanet] = useState<PlanetData>(PLANETS[2]); // Earth
   const [isPaused, setIsPaused] = useState(false);
   const [renderMode, setRenderMode] = useState<'realistic' | 'wireframe'>('realistic');
-
-  const sceneRef = useRef<THREE.Scene | null>(null);
-  const cameraRef = useRef<THREE.PerspectiveCamera | null>(null);
-  const rendererRef = useRef<THREE.WebGLRenderer | null>(null);
-  const planetsGroupRef = useRef<THREE.Group | null>(null);
-  const meshesRef = useRef<THREE.Mesh[]>([]);
 
   useEffect(() => {
     const container = mountRef.current;
     if (!container) return;
 
-    // Dimensions
     const width = container.clientWidth;
-    const height = container.clientHeight || 450;
+    const height = container.clientHeight || 420;
 
-    // Scene
     const scene = new THREE.Scene();
-    sceneRef.current = scene;
-
-    // Camera
     const camera = new THREE.PerspectiveCamera(45, width / height, 0.1, 1000);
-    camera.position.set(0, 32, 55);
+    camera.position.set(0, 30, 52);
     camera.lookAt(0, 0, 0);
-    cameraRef.current = camera;
 
-    // Renderer
     const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
     renderer.setSize(width, height);
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    rendererRef.current = renderer;
     container.replaceChildren(renderer.domElement);
 
-    // Lights
-    const ambientLight = new THREE.AmbientLight(0x222233, 1.2);
+    const ambientLight = new THREE.AmbientLight(0x27272a, 1.5);
     scene.add(ambientLight);
 
-    const sunLight = new THREE.PointLight(0xfffaed, 3.5, 300, 0.5);
+    const sunLight = new THREE.PointLight(0xfff5eb, 3.2, 300, 0.5);
     sunLight.position.set(0, 0, 0);
     scene.add(sunLight);
 
-    // Starfield Particles
+    // Stars
     const starGeometry = new THREE.BufferGeometry();
-    const starCount = 800;
+    const starCount = 500;
     const starPositions = new Float32Array(starCount * 3);
     for (let i = 0; i < starCount * 3; i += 3) {
       starPositions[i] = (Math.random() - 0.5) * 300;
@@ -159,63 +111,44 @@ export const SolarSystem3D: React.FC = () => {
     }
     starGeometry.setAttribute('position', new THREE.BufferAttribute(starPositions, 3));
     const starMaterial = new THREE.PointsMaterial({
-      color: 0x93c5fd,
-      size: 0.8,
+      color: 0x71717a,
+      size: 0.7,
       transparent: true,
-      opacity: 0.6
+      opacity: 0.5
     });
-    const starField = new THREE.Points(starGeometry, starMaterial);
-    scene.add(starField);
+    scene.add(new THREE.Points(starGeometry, starMaterial));
 
-    // Sun Mesh
-    const sunGeometry = new THREE.SphereGeometry(3.6, 32, 32);
-    const sunMaterial = new THREE.MeshBasicMaterial({
-      color: 0xffaa00,
+    // Sun
+    const sunGeom = new THREE.SphereGeometry(3.5, 32, 32);
+    const sunMat = new THREE.MeshBasicMaterial({
+      color: 0xf59e0b,
       wireframe: renderMode === 'wireframe'
     });
-    const sunMesh = new THREE.Mesh(sunGeometry, sunMaterial);
+    const sunMesh = new THREE.Mesh(sunGeom, sunMat);
     scene.add(sunMesh);
 
-    // Sun Glow Halo
-    const sunHaloGeom = new THREE.SphereGeometry(4.2, 32, 32);
-    const sunHaloMat = new THREE.MeshBasicMaterial({
-      color: 0xff8800,
-      transparent: true,
-      opacity: 0.2,
-      wireframe: true
-    });
-    const sunHalo = new THREE.Mesh(sunHaloGeom, sunHaloMat);
-    scene.add(sunHalo);
-
-    // Group for all planets
     const planetsGroup = new THREE.Group();
-    planetsGroupRef.current = planetsGroup;
     scene.add(planetsGroup);
 
-    // Create Planets and Orbit Rings
-    const createdMeshes: THREE.Mesh[] = [];
     const planetOrbitContainers: { container: THREE.Group; speed: number; planetMesh: THREE.Mesh }[] = [];
 
     PLANETS.forEach((planet) => {
-      // Orbit Ring
+      // Orbit Line
       const orbitCurve = new THREE.EllipseCurve(0, 0, planet.distance, planet.distance, 0, 2 * Math.PI, false, 0);
-      const points = orbitCurve.getPoints(100);
+      const points = orbitCurve.getPoints(80);
       const orbitGeom = new THREE.BufferGeometry().setFromPoints(
         points.map(p => new THREE.Vector3(p.x, 0, p.y))
       );
       const orbitMat = new THREE.LineBasicMaterial({
-        color: 0x38bdf8,
+        color: 0x3f3f46,
         transparent: true,
-        opacity: 0.15
+        opacity: 0.3
       });
-      const orbitLine = new THREE.Line(orbitGeom, orbitMat);
-      scene.add(orbitLine);
+      scene.add(new THREE.Line(orbitGeom, orbitMat));
 
-      // Planet Orbit Pivot Container
       const orbitPivot = new THREE.Group();
       planetsGroup.add(orbitPivot);
 
-      // Planet Mesh
       const pGeom = new THREE.SphereGeometry(planet.radius, 24, 24);
       const pMat = new THREE.MeshStandardMaterial({
         color: planet.color,
@@ -225,25 +158,22 @@ export const SolarSystem3D: React.FC = () => {
       const pMesh = new THREE.Mesh(pGeom, pMat);
       pMesh.position.x = planet.distance;
       orbitPivot.add(pMesh);
-      createdMeshes.push(pMesh);
 
-      // Moon for Earth
       if (planet.hasMoon) {
         const moonGeom = new THREE.SphereGeometry(0.3, 16, 16);
-        const moonMat = new THREE.MeshStandardMaterial({ color: 0xcccccc, roughness: 0.9 });
+        const moonMat = new THREE.MeshStandardMaterial({ color: 0x999999, roughness: 0.9 });
         const moonMesh = new THREE.Mesh(moonGeom, moonMat);
-        moonMesh.position.x = 2.2;
+        moonMesh.position.x = 2.0;
         pMesh.add(moonMesh);
       }
 
-      // Rings for Saturn
       if (planet.hasRings) {
-        const ringGeom = new THREE.RingGeometry(2.8, 4.4, 32);
+        const ringGeom = new THREE.RingGeometry(2.8, 4.2, 32);
         const ringMat = new THREE.MeshBasicMaterial({
-          color: 0xc8b082,
+          color: 0xa8a29e,
           side: THREE.DoubleSide,
           transparent: true,
-          opacity: 0.7
+          opacity: 0.6
         });
         const ringMesh = new THREE.Mesh(ringGeom, ringMat);
         ringMesh.rotation.x = Math.PI / 2.5;
@@ -257,9 +187,7 @@ export const SolarSystem3D: React.FC = () => {
       });
     });
 
-    meshesRef.current = createdMeshes;
-
-    // Mouse Drag Rotation
+    // Mouse drag
     let isDragging = false;
     let prevMouseX = 0;
     let prevMouseY = 0;
@@ -274,21 +202,16 @@ export const SolarSystem3D: React.FC = () => {
       if (!isDragging) return;
       const deltaX = e.clientX - prevMouseX;
       const deltaY = e.clientY - prevMouseY;
-
-      scene.rotation.y += deltaX * 0.006;
-      scene.rotation.x = Math.max(-0.6, Math.min(0.6, scene.rotation.x + deltaY * 0.004));
-
+      scene.rotation.y += deltaX * 0.005;
+      scene.rotation.x = Math.max(-0.6, Math.min(0.6, scene.rotation.x + deltaY * 0.003));
       prevMouseX = e.clientX;
       prevMouseY = e.clientY;
     };
 
-    const onMouseUp = () => {
-      isDragging = false;
-    };
-
+    const onMouseUp = () => { isDragging = false; };
     const onWheel = (e: WheelEvent) => {
       e.preventDefault();
-      camera.position.z = Math.max(25, Math.min(100, camera.position.z + e.deltaY * 0.05));
+      camera.position.z = Math.max(25, Math.min(90, camera.position.z + e.deltaY * 0.05));
     };
 
     container.addEventListener('mousedown', onMouseDown);
@@ -296,38 +219,28 @@ export const SolarSystem3D: React.FC = () => {
     window.addEventListener('mouseup', onMouseUp);
     container.addEventListener('wheel', onWheel, { passive: false });
 
-    // Animation Loop
     let animId: number;
     const animate = () => {
       animId = requestAnimationFrame(animate);
-
-      // Rotate Sun
-      sunMesh.rotation.y += 0.003;
-      sunHalo.rotation.y -= 0.002;
-
-      // Animate Planet Orbits
+      sunMesh.rotation.y += 0.002;
       if (!isPaused) {
         planetOrbitContainers.forEach(item => {
-          item.container.rotation.y += item.speed * 0.5;
-          item.planetMesh.rotation.y += 0.02;
+          item.container.rotation.y += item.speed * 0.4;
+          item.planetMesh.rotation.y += 0.015;
         });
       }
-
       renderer.render(scene, camera);
     };
-
     animate();
 
-    // Handle Window Resize
     const handleResize = () => {
       if (!container) return;
       const w = container.clientWidth;
-      const h = container.clientHeight || 450;
+      const h = container.clientHeight || 420;
       camera.aspect = w / h;
       camera.updateProjectionMatrix();
       renderer.setSize(w, h);
     };
-
     window.addEventListener('resize', handleResize);
 
     return () => {
@@ -342,75 +255,57 @@ export const SolarSystem3D: React.FC = () => {
   }, [isPaused, renderMode]);
 
   return (
-    <div className="rounded-2xl border border-slate-800 bg-slate-900/90 backdrop-blur-xl overflow-hidden shadow-2xl relative">
-      {/* Top Header & Interactive Controls */}
-      <div className="px-6 py-4 bg-slate-950/80 border-b border-slate-800 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+    <div className="rounded-xl border border-zinc-800 bg-zinc-900/40 overflow-hidden">
+      {/* Header Bar */}
+      <div className="px-5 py-3.5 bg-zinc-900/60 border-b border-zinc-800 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <div className="flex items-center gap-2">
-            <h3 className="text-lg font-bold text-white flex items-center gap-2">
-              <span className="w-2.5 h-2.5 rounded-full bg-purple-400 animate-pulse" />
-              3D AR Solar System Simulator
-            </h3>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-500/10 text-purple-300 border border-purple-500/20">
-              Interactive WebGL
-            </span>
-          </div>
-          <p className="text-xs text-slate-400 mt-0.5">
-            Real-time planetary motion simulator inspired by my Unity AR Solar System project
+          <h3 className="text-sm font-semibold text-zinc-200">
+            Unity AR Solar System (WebGL Preview)
+          </h3>
+          <p className="text-xs text-zinc-500">
+            Interactive planetary orbit model built to test spatial 3D concepts
           </p>
         </div>
 
-        {/* View mode & control toggles */}
         <div className="flex items-center gap-2">
           <button
-            onClick={() => {
-              setRenderMode(prev => prev === 'realistic' ? 'wireframe' : 'realistic');
-              soundFX.playBlip();
-            }}
-            className={`px-3 py-1.5 rounded-lg text-xs font-semibold border transition-all ${
+            onClick={() => setRenderMode(prev => prev === 'realistic' ? 'wireframe' : 'realistic')}
+            className={`px-2.5 py-1 rounded text-xs font-medium border transition-colors ${
               renderMode === 'wireframe'
-                ? 'bg-purple-500 text-slate-950 border-purple-400 font-bold'
-                : 'bg-slate-900 border-slate-800 text-slate-300 hover:text-white'
+                ? 'bg-zinc-200 text-zinc-950 border-zinc-300'
+                : 'bg-zinc-800 border-zinc-700 text-zinc-300 hover:text-white'
             }`}
           >
-            {renderMode === 'wireframe' ? 'Wireframe Mode' : 'Realistic Render'}
+            {renderMode === 'wireframe' ? 'Wireframe' : 'Standard'}
           </button>
 
           <button
-            onClick={() => {
-              setIsPaused(prev => !prev);
-              soundFX.playBlip();
-            }}
-            className="p-1.5 rounded-lg bg-slate-900 border border-slate-800 text-slate-300 hover:text-white transition-colors"
-            title={isPaused ? "Play" : "Pause"}
+            onClick={() => setIsPaused(prev => !prev)}
+            className="px-2.5 py-1 rounded border border-zinc-700 bg-zinc-800 text-xs text-zinc-300 hover:text-white"
           >
-            {isPaused ? <Icons.Gauge className="w-4 h-4 text-emerald-400" /> : <Icons.Activity className="w-4 h-4 text-cyan-400" />}
+            {isPaused ? 'Resume' : 'Pause'}
           </button>
         </div>
       </div>
 
-      {/* 3D WebGL Canvas Viewport */}
-      <div className="relative w-full h-[400px] sm:h-[460px] cursor-grab active:cursor-grabbing bg-radial from-slate-900 via-slate-950 to-slate-950">
+      {/* 3D Canvas */}
+      <div className="relative w-full h-[380px] sm:h-[420px] cursor-grab active:cursor-grabbing bg-zinc-950">
         <div ref={mountRef} className="w-full h-full" />
 
-        {/* Floating 3D Interaction Instructions */}
-        <div className="absolute top-4 left-4 pointer-events-none text-[11px] font-mono text-slate-400 bg-slate-950/70 backdrop-blur-md px-3 py-1.5 rounded-lg border border-slate-800">
-          <span>🖱️ Drag to rotate 3D view • Scroll to zoom</span>
+        <div className="absolute top-3 left-3 text-[11px] font-mono text-zinc-500 pointer-events-none">
+          Click & drag to rotate • Scroll to zoom
         </div>
 
-        {/* Planet Quick Select Strip */}
-        <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex items-center gap-1.5 p-1.5 bg-slate-950/80 backdrop-blur-md rounded-xl border border-slate-800 text-xs overflow-x-auto max-w-[95%]">
+        {/* Planet Selector */}
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 p-1 bg-zinc-900/90 rounded-lg border border-zinc-800 text-xs">
           {PLANETS.map((planet) => (
             <button
               key={planet.name}
-              onClick={() => {
-                setSelectedPlanet(planet);
-                soundFX.playBlip();
-              }}
-              className={`px-3 py-1 rounded-lg font-mono transition-all whitespace-nowrap ${
+              onClick={() => setSelectedPlanet(planet)}
+              className={`px-2.5 py-1 rounded text-xs transition-colors ${
                 selectedPlanet.name === planet.name
-                  ? 'bg-gradient-to-r from-purple-500 to-indigo-600 text-white font-bold shadow-md shadow-purple-500/20'
-                  : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                  ? 'bg-zinc-200 text-zinc-950 font-medium'
+                  : 'text-zinc-400 hover:text-zinc-200'
               }`}
             >
               {planet.name}
@@ -419,29 +314,21 @@ export const SolarSystem3D: React.FC = () => {
         </div>
       </div>
 
-      {/* Selected Planet Telemetry HUD */}
-      <div className="p-5 bg-slate-950/90 border-t border-slate-800 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-mono">
-        <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-          <div className="text-slate-500 uppercase text-[10px]">Planet Target</div>
-          <div className="text-sm font-bold text-white mt-0.5">{selectedPlanet.name}</div>
+      {/* Selected Planet Stats */}
+      <div className="p-4 bg-zinc-900/80 border-t border-zinc-800 grid grid-cols-3 gap-3 text-xs">
+        <div>
+          <span className="text-zinc-500 block">Planet</span>
+          <span className="text-zinc-200 font-medium">{selectedPlanet.name}</span>
         </div>
-
-        <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-          <div className="text-slate-500 uppercase text-[10px]">Diameter</div>
-          <div className="text-sm font-bold text-cyan-400 mt-0.5">{selectedPlanet.specs.diameter}</div>
+        <div>
+          <span className="text-zinc-500 block">Diameter</span>
+          <span className="text-zinc-200 font-medium">{selectedPlanet.specs.diameter}</span>
         </div>
-
-        <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-          <div className="text-slate-500 uppercase text-[10px]">Orbital Period</div>
-          <div className="text-sm font-bold text-purple-400 mt-0.5">{selectedPlanet.specs.orbitPeriod}</div>
-        </div>
-
-        <div className="p-3 rounded-lg bg-slate-900/60 border border-slate-800">
-          <div className="text-slate-500 uppercase text-[10px]">Atmospheric Profile</div>
-          <div className="text-xs font-semibold text-slate-300 mt-0.5 truncate">{selectedPlanet.specs.atmosphere}</div>
+        <div>
+          <span className="text-zinc-500 block">Orbit Period</span>
+          <span className="text-zinc-200 font-medium">{selectedPlanet.specs.orbitPeriod}</span>
         </div>
       </div>
     </div>
   );
 };
-

@@ -3,91 +3,87 @@ import { Project, SkillCategory, ExperienceItem, CertificationItem } from '../ty
 export const personalInfo = {
   name: "Muhammed Mubashir",
   role: "Full-Stack Developer",
-  tagline: "Building high-performance web applications, automotive telemetry dashboards, and scalable APIs.",
+  tagline: "I build web applications, automotive dashboards, and backend APIs with React, TypeScript, and Node.js.",
   currentRole: "Software Developer at Ziqx Creative Clique LLP",
   companyLocation: "DBI Skill Park, Markaz Knowledge City, Kaithappoyil, Kerala",
-  education: "BCA in AI, VR & AR (Cloud Computing Specialization) — Srinivas University",
-  graduationPeriod: "June 2024 – January 2027",
+  education: "BCA in AI, VR & AR (Cloud Computing) — Srinivas University",
+  graduationPeriod: "2024 – 2027",
   email: "muhammedmubashir3001@gmail.com",
   phone: "+91 96053 42418",
   github: "https://github.com/Mxxdmubashir",
   whatsapp: "https://wa.me/919605342418",
   location: "Calicut, Kerala, India",
   availableForWork: true,
-  bio: `I am a software developer at Ziqx Creative Clique LLP and a BCA student specializing in Artificial Intelligence, Virtual Reality, Augmented Reality, and Cloud Computing at Srinivas University. 
+  bio: `Hey, I'm Mubashir. I'm a full-stack developer based in Calicut, Kerala. 
 
-I engineer full-stack web applications, interactive dashboards, and robust REST APIs with authentication using React, TypeScript, Node.js, and PostgreSQL. With strong computer science fundamentals in C, Java, and JavaScript algorithms, I combine disciplined software engineering with AI prompting to build and ship real-world products faster.`,
-  careerObjective: `To grow as a software developer by contributing to real-world product and client projects, following coding standards, collaborating with teammates, troubleshooting issues, documenting work, and completing assigned tasks within agreed timelines.`
+Currently, I work as a software developer at Ziqx Creative Clique LLP, building websites, admin dashboards, and REST APIs with authentication. At the same time, I'm in my BCA program at Srinivas University, focusing on AI, VR/AR, and Cloud Computing.
+
+I like building things that solve actual problems—from cloud kitchen software to real-time car diagnostics (OBD-II telemetry) and interactive 3D simulations. I focus on writing clean, dependable code using React, TypeScript, Node.js, and PostgreSQL.`,
+  careerObjective: `To keep growing as a software developer by working on real client and product projects, collaborating closely with teams, troubleshooting issues carefully, and shipping clean, well-tested code on time.`
 };
 
 export const skillCategories: SkillCategory[] = [
   {
-    name: "Frontend Development",
+    name: "Frontend",
     icon: "Layout",
     skills: [
-      { name: "React", level: "Advanced", highlight: true },
-      { name: "TypeScript", level: "Advanced", highlight: true },
-      { name: "JavaScript (ES6+)", level: "Advanced", highlight: true },
-      { name: "HTML5 & CSS3", level: "Expert" },
-      { name: "Tailwind CSS", level: "Advanced", highlight: true },
-      { name: "Responsive UI/UX", level: "Advanced" },
-      { name: "State Management", level: "Advanced" }
+      { name: "React", level: "Primary", highlight: true },
+      { name: "TypeScript", level: "Primary", highlight: true },
+      { name: "JavaScript (ES6+)", level: "Primary", highlight: true },
+      { name: "Tailwind CSS", level: "Proficient", highlight: true },
+      { name: "HTML5 & CSS3", level: "Proficient" },
+      { name: "Responsive Design", level: "Proficient" }
     ]
   },
   {
     name: "Backend & APIs",
     icon: "Server",
     skills: [
-      { name: "Node.js", level: "Advanced", highlight: true },
-      { name: "Express.js", level: "Advanced", highlight: true },
-      { name: "RESTful APIs", level: "Advanced", highlight: true },
-      { name: "Authentication (JWT)", level: "Advanced" },
-      { name: "MERN Stack", level: "Advanced" },
-      { name: "LAMP Stack", level: "Intermediate" }
+      { name: "Node.js", level: "Primary", highlight: true },
+      { name: "Express", level: "Primary", highlight: true },
+      { name: "REST APIs", level: "Primary", highlight: true },
+      { name: "JWT Auth", level: "Proficient" },
+      { name: "Socket.io", level: "Familiar" }
     ]
   },
   {
-    name: "Database & Data Handling",
+    name: "Databases",
     icon: "Database",
     skills: [
-      { name: "PostgreSQL", level: "Advanced", highlight: true },
-      { name: "SQL", level: "Advanced", highlight: true },
-      { name: "Database Design", level: "Intermediate" },
-      { name: "Information Retrieval", level: "Advanced" },
-      { name: "Data Modeling", level: "Advanced" }
+      { name: "PostgreSQL", level: "Primary", highlight: true },
+      { name: "SQL", level: "Proficient", highlight: true },
+      { name: "SQLite", level: "Proficient" },
+      { name: "Schema Design", level: "Proficient" }
     ]
   },
   {
-    name: "Systems & Programming Languages",
+    name: "Languages & Core CS",
     icon: "Code",
     skills: [
-      { name: "Java", level: "Advanced", highlight: true },
-      { name: "C Programming", level: "Advanced" },
-      { name: "C++", level: "Intermediate" },
-      { name: "Data Structures & Algos", level: "Certified", highlight: true }
+      { name: "Java", level: "Proficient" },
+      { name: "C / C++", level: "Proficient" },
+      { name: "Data Structures", level: "Certified", highlight: true },
+      { name: "Algorithms", level: "Certified", highlight: true }
     ]
   },
   {
-    name: "AR/VR & Emerging Tech",
+    name: "Automotive & 3D Tech",
     icon: "Layers",
     skills: [
-      { name: "Unity Engine", level: "Intermediate", highlight: true },
-      { name: "Augmented Reality (AR)", level: "Intermediate", highlight: true },
-      { name: "3D Animation & Scene Config", level: "Intermediate" },
-      { name: "Automotive Telemetry (OBD-II)", level: "Intermediate", highlight: true },
-      { name: "Cloud Computing", level: "Intermediate" },
-      { name: "AI Prompting Workflows", level: "Expert", highlight: true }
+      { name: "OBD-II & CAN Telemetry", level: "Enthusiast", highlight: true },
+      { name: "Unity Engine", level: "Hands-on", highlight: true },
+      { name: "Augmented Reality (AR)", level: "Hands-on" },
+      { name: "Cloud Computing Basics", level: "Coursework" }
     ]
   },
   {
-    name: "Developer Tools & Workflow",
+    name: "Tools & Daily Workflow",
     icon: "Terminal",
     skills: [
-      { name: "Git & GitHub", level: "Advanced", highlight: true },
-      { name: "VS Code", level: "Expert" },
-      { name: "Postman API Testing", level: "Advanced" },
-      { name: "Debugging & QA", level: "Advanced" },
-      { name: "Technical Documentation", level: "Advanced" }
+      { name: "Git & GitHub", level: "Daily", highlight: true },
+      { name: "VS Code", level: "Daily" },
+      { name: "Postman", level: "Daily" },
+      { name: "Linux Basics", level: "Familiar" }
     ]
   }
 ];
@@ -95,130 +91,125 @@ export const skillCategories: SkillCategory[] = [
 export const projects: Project[] = [
   {
     id: "pepito-cloud-kitchen",
-    title: "Pepito Cloud Kitchen Enterprise Software",
+    title: "Pepito Cloud Kitchen",
     category: "Full-Stack",
-    description: "Enterprise cloud kitchen management platform combining multi-brand virtual storefronts, high-speed POS billing, real-time Kitchen Display System (KDS), and automated recipe BOM inventory tracking.",
-    longDescription: "Architected and developed a full-stack, enterprise-grade cloud kitchen system designed to run multiple virtual restaurant brands from a single kitchen facility. Features real-time multi-channel order ingestion (Swiggy, Zomato, UberEats, POS), station-based Kitchen Display System (KDS) with live timers, automated recipe portion inventory deduction (BOM), 80mm thermal receipt printing, and end-of-day Z-Report financial reconciliation.",
-    tags: ["React", "TypeScript", "Node.js", "Express", "Socket.io", "Tailwind CSS", "SQLite / SQL", "KDS & POS"],
+    description: "An enterprise POS, live kitchen display (KDS), multi-brand aggregator, and recipe inventory management platform for cloud kitchens.",
+    longDescription: "A full-stack system built to manage multiple virtual food brands from one kitchen. It pulls orders together from Swiggy, Zomato, and counter billing into a live kitchen display with station timers, automated raw material portion deduction, and end-of-day cash reconciliation reports.",
+    tags: ["React", "TypeScript", "Node.js", "Express", "Socket.io", "SQLite"],
     features: [
-      "Multi-brand virtual storefront management with independent menus & channel pricing",
-      "Real-time live orders aggregator hub for Swiggy, Zomato, UberEats, and POS with status steppers",
-      "Station-based Kitchen Display System (KDS) with color-coded urgency timers & 1-click bump ready",
-      "Touch-friendly POS billing with 80mm thermal receipt printing & UPI/Cash/Card tenders",
-      "Automated recipe portion Bill of Materials (BOM) inventory deductions & low-stock alerts",
-      "End-of-day Z-Report financial reconciliation and business performance analytics"
+      "Unified order stream for online aggregators and counter takeaway billing",
+      "Station-based Kitchen Display System (KDS) with delay timers and 1-click bump",
+      "Recipe Bill of Materials (BOM) automatically deducts inventory per order",
+      "Thermal receipt printing support and daily Z-Report revenue summaries"
     ],
     githubUrl: "https://github.com/Mxxdmubashir/pepitocloud",
     iconName: "Utensils",
-    accentColor: "from-orange-500 via-amber-500 to-red-600",
+    accentColor: "from-amber-600 to-orange-700",
     status: "Production Ready"
   },
   {
     id: "obd-dashboard",
-    title: "OBD System Reader Dashboard",
+    title: "OBD-II Vehicle Reader",
     category: "Automotive",
-    description: "Real-time vehicle diagnostic telemetry dashboard presenting live engine metrics, DTC trouble codes, and sensor data in an intuitive HUD interface.",
-    longDescription: "Developed a comprehensive automotive diagnostic interface concept to present real-time vehicle telemetry and diagnostic trouble codes (DTCs). Applied frontend state management, gauge animations, and data-handling architecture to make complex automotive sensor streams accessible and actionable for drivers and technicians.",
-    tags: ["React", "TypeScript", "Tailwind CSS", "OBD-II Telemetry", "Real-time Data", "Data Visualization"],
+    description: "Real-time car diagnostic dashboard that reads live speed, engine RPM, coolant temperature, and DTC fault codes from vehicle CAN-bus.",
+    longDescription: "Inspired by my passion for automotive electronics, I developed this dashboard to visualize vehicle diagnostic telemetry clearly. Drivers and mechanics can view engine metrics in real-time, inspect diagnostic trouble codes, and verify vehicle health.",
+    tags: ["React", "TypeScript", "Tailwind CSS", "OBD-II", "Telemetry"],
     features: [
-      "Live vehicle gauge telemetry: Speedometer, RPM, Coolant Temperature, Engine Load",
-      "Diagnostic Trouble Code (DTC) scanner with clear code definitions & severity indicators",
-      "Trip analytics and fuel efficiency monitoring",
-      "Interactive status toggles: Normal, Check Engine, and Sport diagnostics"
+      "Live gauges for Vehicle Speed, Engine RPM, Coolant Temp, and Throttle",
+      "DTC trouble code scanner with human-readable fault explanations",
+      "Normal, Sport, and Fault testing simulation modes",
+      "Real-time CAN-bus data stream viewer"
     ],
     githubUrl: "https://github.com/Mxxdmubashir",
     iconName: "Activity",
-    accentColor: "from-cyan-500 to-blue-600",
+    accentColor: "from-blue-600 to-indigo-700",
     status: "Production Ready"
   },
   {
     id: "unity-ar-solar-system",
     title: "Unity AR Solar System",
     category: "AR/VR",
-    description: "Immersive Augmented Reality solar system application developed in Unity, rendering interactive 3D planetary motion and informational overlays on mobile devices.",
-    longDescription: "Developed an interactive Augmented Reality Solar System application using the Unity game engine to present planetary bodies in an immersive digital environment. Configured 3D planetary models, orbital hierarchies, rotational animations, and interactive camera viewpoints. Solved APK compilation and spatial tracking challenges to deliver a smooth mobile AR experience.",
-    tags: ["Unity", "C#", "Augmented Reality", "3D Modeling", "Mobile APK", "Interactive Education"],
+    description: "An interactive Augmented Reality mobile application built with Unity that lets users project and inspect the solar system on physical surfaces.",
+    longDescription: "Developed for my AR/VR coursework at Srinivas University. Users can place a 3D model of the solar system on any tabletop using mobile AR, watch realistic orbital paths, and tap planets to inspect physical specs and atmospheres.",
+    tags: ["Unity", "C#", "AR", "3D Animation", "Android APK"],
     features: [
-      "Accurate orbital trajectories and realistic rotational physics for all 8 planets",
-      "Interactive touch raycasting to view planetary specs, atmospheric data, and scale",
-      "Optimized 3D asset meshes and textures for mobile APK performance",
-      "Spatial plane detection for stable table-top AR projection"
+      "Surface detection for table-top AR projection on mobile devices",
+      "Accurate orbital speeds and rotational axes for planets",
+      "Interactive tap-to-inspect card with planetary facts and scale data",
+      "Optimized mobile APK build with low draw calls"
     ],
     githubUrl: "https://github.com/Mxxdmubashir",
     iconName: "Globe",
-    accentColor: "from-purple-500 to-indigo-600",
+    accentColor: "from-purple-600 to-violet-800",
     status: "Completed"
   },
   {
     id: "ecommerce-platform",
-    title: "Full-Stack E-Commerce Platform",
+    title: "Full-Stack Storefront",
     category: "Full-Stack",
-    description: "Modern e-commerce platform with dynamic product catalogs, category filtering, cart management, and seamless responsive design.",
-    longDescription: "Engineered a responsive e-commerce web application with rich product presentation, search and filter capabilities, shopping cart state management, and user checkout workflows. Emphasized clean frontend UI patterns, optimized image loading, and intuitive user interactions.",
-    tags: ["React", "Node.js", "Express", "PostgreSQL", "REST APIs", "Tailwind CSS"],
+    description: "Responsive e-commerce web application with product catalog, category filters, cart persistence, and checkout.",
+    longDescription: "Built with React and Node.js to practice end-to-end web architecture, cart state management, product filtering, and clean responsive layouts across mobile and desktop.",
+    tags: ["React", "Node.js", "Express", "PostgreSQL", "REST APIs"],
     features: [
-      "Dynamic product catalog with multi-facet category and price filtering",
-      "Persistent shopping cart with live quantity and price calculations",
-      "Modular REST API architecture for product data handling",
-      "Mobile-first responsive design tested across multiple viewport breakpoints"
+      "Search, price filtering, and category selection",
+      "Persistent cart state saved across sessions",
+      "Clean modular REST API backend",
+      "Mobile-friendly checkout layout"
     ],
     githubUrl: "https://github.com/Mxxdmubashir",
     iconName: "ShoppingCart",
-    accentColor: "from-emerald-500 to-teal-600",
+    accentColor: "from-emerald-600 to-teal-800",
     status: "Completed"
   },
   {
     id: "smart-attendance-tracker",
-    title: "Smart Attendance Tracker",
+    title: "Attendance Tracker",
     category: "Utilities",
-    description: "Digital record-keeping and attendance monitoring system with automated status tracking, historical reporting, and filtering.",
-    longDescription: "Created an application for recording, organizing, and monitoring attendance records across departments. Applied structured data handling, state persistence, and information retrieval algorithms to replace manual logbooks with an efficient digital portal.",
-    tags: ["JavaScript", "HTML5", "CSS3", "Data Management", "Information Retrieval"],
+    description: "Digital attendance logging tool for tracking daily records, calculating attendance percentages, and filtering by date.",
+    longDescription: "Replaces manual registers with a simple, reliable web interface for tracking member and student attendance with automated stats.",
+    tags: ["JavaScript", "HTML5", "CSS3", "Data Management"],
     features: [
-      "Quick-mark attendance with instant status indicators (Present, Absent, Excused)",
-      "Automated attendance percentage calculations and threshold alerts",
-      "Date-range filtering and searchable records table",
-      "Clean exportable summaries for administration"
+      "Quick mark attendance with Present, Absent, and Late states",
+      "Automated attendance percentage calculations",
+      "Search and date filtering"
     ],
     githubUrl: "https://github.com/Mxxdmubashir",
     iconName: "UserCheck",
-    accentColor: "from-amber-500 to-orange-600",
+    accentColor: "from-amber-600 to-yellow-700",
     status: "Completed"
   },
   {
     id: "expense-tracker-app",
-    title: "Personal Expense Tracker",
+    title: "Expense Tracker",
     category: "Utilities",
-    description: "Financial management application for logging expenses, visualizing spending breakdowns, and setting monthly budgets.",
-    longDescription: "Developed an application for recording and organizing financial information. Applied data structure concepts, calculation logic, and category tagging to deliver actionable insights into personal expenditure patterns.",
-    tags: ["React", "JavaScript", "State Management", "Data Analytics", "CSS3"],
+    description: "Clean personal finance application for logging income and expenses, categorizing spending, and reviewing totals.",
+    longDescription: "A lightweight financial tool for everyday budgeting. Helps track where money goes each month with category breakdowns.",
+    tags: ["React", "JavaScript", "State Management", "CSS"],
     features: [
-      "Categorized income and expense logging with instant balance recalculation",
-      "Visual spending distribution breakdown by category (Food, Travel, Bills, etc.)",
-      "Transaction history search and instant deletion/editing",
-      "Persistent client-side storage for offline access"
+      "Income and expense entries with instant balance update",
+      "Category breakdown for food, rent, transit, and bills",
+      "Local storage persistence for quick offline use"
     ],
     githubUrl: "https://github.com/Mxxdmubashir",
     iconName: "DollarSign",
-    accentColor: "from-rose-500 to-pink-600",
+    accentColor: "from-rose-600 to-red-800",
     status: "Completed"
   },
   {
     id: "chatbot-memory-game",
-    title: "Interactive AI Chatbot & Memory Game",
+    title: "Interactive Chatbot & Memory Game",
     category: "Utilities",
-    description: "Interactive dual project: an automated conversational chatbot paired with a pattern-matching JavaScript memory card puzzle game.",
-    longDescription: "Engineered an interactive conversational chatbot focusing on automated responses and keyword recognition alongside a JavaScript memory card game implementing card flipping logic, shuffle algorithms, and match detection state machines.",
-    tags: ["JavaScript", "DOM Manipulation", "Game Logic", "UI State Machines", "CSS Animation"],
+    description: "A dual JavaScript project featuring a keyword-based conversational chatbot and a card-matching memory puzzle.",
+    longDescription: "Built to strengthen JavaScript DOM manipulation, state machines, and CSS 3D flip card animations.",
+    tags: ["JavaScript", "DOM", "State Logic", "CSS3"],
     features: [
-      "Context-sensitive chat replies with simulated typing delays",
-      "Dynamic card shuffle algorithm (Fisher-Yates) for randomized game rounds",
-      "Move counter, timer, and score calculation engine",
-      "Smooth 3D flip card animations using pure CSS transforms"
+      "Rule-based automated chat replies",
+      "Card shuffle algorithm with move counter and timer",
+      "Smooth 3D flip card animations in pure CSS"
     ],
     githubUrl: "https://github.com/Mxxdmubashir",
     iconName: "MessageSquare",
-    accentColor: "from-blue-500 to-cyan-600",
+    accentColor: "from-blue-600 to-slate-700",
     status: "Completed"
   }
 ];
@@ -229,15 +220,14 @@ export const experienceData: ExperienceItem[] = [
     role: "Software Developer",
     company: "Ziqx Creative Clique LLP",
     location: "DBI Skill Park, Markaz Knowledge City, Kaithappoyil, Kerala",
-    period: "Present",
+    period: "2024 – Present",
     type: "Work",
     description: [
-      "Building full-stack web applications, custom business dashboards, and responsive client websites.",
-      "Developing secure RESTful APIs with authentication and database integrations using Node.js and PostgreSQL.",
-      "Collaborating with the design and engineering team to implement clean UI/UX following modern industry standards.",
-      "Leveraging AI-assisted development and advanced prompting workflows to accelerate delivery cycles."
+      "Building full-stack web applications, custom management dashboards, and responsive client websites.",
+      "Developing backend REST APIs with Node.js, Express, and PostgreSQL with user authentication.",
+      "Working closely with teammates and clients to troubleshoot issues and deliver features on schedule."
     ],
-    skills: ["React", "TypeScript", "Node.js", "PostgreSQL", "REST APIs", "Git", "AI Prompting"]
+    skills: ["React", "TypeScript", "Node.js", "PostgreSQL", "REST APIs", "Git"]
   },
   {
     id: "srinivas-bca",
@@ -247,51 +237,49 @@ export const experienceData: ExperienceItem[] = [
     period: "June 2024 – January 2027",
     type: "Education",
     description: [
-      "Specialization in Artificial Intelligence (AI), Virtual Reality (VR), and Augmented Reality (AR).",
-      "Cloud Computing Specialization track focusing on scalable cloud architecture and deployment models.",
-      "Key coursework: Object-Oriented Programming (Java, C++), Data Structures & Algorithms, Database Management Systems (SQL), Operating Systems, and Computer Networks.",
-      "Built cross-disciplinary projects including the Unity AR Solar System and automotive diagnostic dashboards."
+      "Specializing in Artificial Intelligence, Virtual Reality, Augmented Reality, and Cloud Computing.",
+      "Coursework in Object-Oriented Programming (Java, C++), Data Structures, Algorithms, and SQL Database Systems.",
+      "Building practical academic projects including the Unity AR Solar System."
     ],
-    skills: ["AI/VR/AR", "Cloud Computing", "Java", "C/C++", "SQL", "Unity", "DSA"]
+    skills: ["Java", "C/C++", "SQL", "Unity", "Data Structures", "AR/VR"]
   }
 ];
 
 export const certifications: CertificationItem[] = [
   {
-    title: "JavaScript Algorithms and Data Structures",
-    issuer: "freeCodeCamp Developer Certification",
-    date: "October 27, 2025",
-    skills: ["JavaScript", "Algorithms", "Data Structures", "OOP", "Functional Programming"]
+    title: "JavaScript Algorithms & Data Structures",
+    issuer: "freeCodeCamp",
+    date: "October 2025",
+    skills: ["JavaScript", "Algorithms", "Data Structures", "OOP"]
   },
   {
     title: "Front-End Development Libraries",
     issuer: "freeCodeCamp",
     date: "Certified",
-    skills: ["React", "Redux", "Bootstrap", "SASS", "Responsive Layouts"]
+    skills: ["React", "Redux", "Bootstrap", "Responsive Design"]
   },
   {
-    title: "Back-End Development and APIs",
+    title: "Back-End Development & APIs",
     issuer: "freeCodeCamp",
     date: "Certified",
-    skills: ["Node.js", "Express", "MongoDB", "REST APIs", "NPM"]
+    skills: ["Node.js", "Express", "REST APIs"]
   },
   {
     title: "Responsive Web Design (HTML & CSS)",
     issuer: "freeCodeCamp",
     date: "Certified",
-    skills: ["HTML5", "CSS3", "Flexbox", "CSS Grid", "Accessibility"]
+    skills: ["HTML5", "CSS3", "Flexbox", "Grid"]
   },
   {
     title: "Java Programming Fundamentals",
-    issuer: "Academic & Professional Certification",
+    issuer: "Academic Certification",
     date: "Certified",
-    skills: ["Core Java", "OOP", "Collections", "Exception Handling"]
+    skills: ["Core Java", "OOP", "Collections"]
   },
   {
     title: "C & C++ Programming",
-    issuer: "Academic & Systems Development",
+    issuer: "Academic Certification",
     date: "Certified",
-    skills: ["Memory Management", "Pointers", "Data Structures", "Algorithmic Logic"]
+    skills: ["Pointers", "Memory", "Algorithms"]
   }
 ];
-

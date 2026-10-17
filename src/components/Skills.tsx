@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { skillCategories } from '../data/portfolioData';
-import { Icons } from './Icons';
 
 export const Skills: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -12,33 +11,30 @@ export const Skills: React.FC = () => {
     : skillCategories.filter(c => c.name === selectedCategory);
 
   return (
-    <section id="skills" className="py-20 relative bg-slate-950/40">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="skills" className="py-20 border-b border-zinc-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
-        <div className="text-center max-w-3xl mx-auto mb-14">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Icons.Code className="w-3.5 h-3.5" />
-            <span>Technical Capabilities</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Skills & Modern Tech Stack
+        <div className="mb-10">
+          <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Skills</span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mt-1">
+            Technologies & Tools
           </h2>
-          <p className="mt-4 text-slate-400 text-base sm:text-lg">
-            From frontend UI architecture to database schemas, low-level programming in C/Java, and 3D Augmented Reality scenes.
+          <p className="mt-2 text-sm text-zinc-400">
+            Languages, libraries, and frameworks I use across projects and daily work.
           </p>
         </div>
 
-        {/* Filter Pills */}
-        <div className="flex flex-wrap items-center justify-center gap-2 mb-12">
+        {/* Category Pills */}
+        <div className="flex flex-wrap gap-2 mb-8">
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setSelectedCategory(cat)}
-              className={`px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold transition-all cursor-pointer ${
+              className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer ${
                 selectedCategory === cat
-                  ? 'bg-gradient-to-r from-cyan-500 to-blue-600 text-slate-950 shadow-md shadow-cyan-500/20'
-                  : 'bg-slate-900/80 border border-slate-800 text-slate-400 hover:text-white hover:border-slate-700'
+                  ? 'bg-zinc-100 text-zinc-950 font-semibold'
+                  : 'bg-zinc-900/60 border border-zinc-800 text-zinc-400 hover:text-zinc-200'
               }`}
             >
               {cat}
@@ -47,80 +43,41 @@ export const Skills: React.FC = () => {
         </div>
 
         {/* Skills Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filteredCategories.map((category) => (
             <div
               key={category.name}
-              className="glass-panel rounded-2xl p-6 border border-slate-800/80 hover:border-slate-700 transition-all flex flex-col justify-between"
+              className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 flex flex-col justify-between"
             >
               <div>
-                <div className="flex items-center justify-between pb-4 border-b border-slate-800/80 mb-5">
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-lg bg-cyan-500/10 border border-cyan-500/20 flex items-center justify-center text-cyan-400">
-                      {category.icon === 'Layout' && <Icons.Layout className="w-4 h-4" />}
-                      {category.icon === 'Server' && <Icons.Server className="w-4 h-4" />}
-                      {category.icon === 'Database' && <Icons.Database className="w-4 h-4" />}
-                      {category.icon === 'Code' && <Icons.Code className="w-4 h-4" />}
-                      {category.icon === 'Layers' && <Icons.Layers className="w-4 h-4" />}
-                      {category.icon === 'Terminal' && <Icons.Terminal className="w-4 h-4" />}
-                    </div>
-                    <h3 className="text-base font-bold text-white">{category.name}</h3>
-                  </div>
-                  <span className="text-[11px] font-mono text-slate-500">
-                    {category.skills.length} skills
-                  </span>
-                </div>
+                <h3 className="text-sm font-semibold text-zinc-200 pb-3 mb-4 border-b border-zinc-800/80">
+                  {category.name}
+                </h3>
 
                 <div className="flex flex-wrap gap-2">
                   {category.skills.map((skill) => (
-                    <div
+                    <span
                       key={skill.name}
-                      className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 transition-all ${
+                      className={`px-2.5 py-1 rounded-md text-xs font-medium ${
                         skill.highlight
-                          ? 'bg-cyan-500/10 border border-cyan-500/30 text-cyan-200 shadow-sm shadow-cyan-500/5'
-                          : 'bg-slate-900/80 border border-slate-800 text-slate-300'
+                          ? 'bg-zinc-800 text-zinc-100 border border-zinc-700/80'
+                          : 'bg-zinc-900 text-zinc-400 border border-zinc-800/80'
                       }`}
                     >
-                      <span>{skill.name}</span>
-                      <span className="text-[10px] text-slate-400 font-mono">
-                        • {skill.level}
-                      </span>
-                    </div>
+                      {skill.name}
+                    </span>
                   ))}
                 </div>
               </div>
 
-              {/* Category Footer Indicator */}
-              <div className="mt-5 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400 font-mono">
-                <span>Verified in production & projects</span>
-                <span className="text-cyan-400">● Active</span>
+              <div className="mt-4 pt-3 border-t border-zinc-800/60 text-[11px] text-zinc-500 font-mono">
+                {category.skills.length} tools
               </div>
             </div>
           ))}
-        </div>
-
-        {/* AI & Velocity Callout Banner */}
-        <div className="mt-12 rounded-2xl border border-cyan-500/20 bg-gradient-to-r from-cyan-950/40 via-slate-900/70 to-blue-950/40 p-6 sm:p-8 flex flex-col md:flex-row items-center justify-between gap-6 backdrop-blur-xl">
-          <div className="flex items-start sm:items-center gap-4">
-            <div className="w-12 h-12 rounded-xl bg-cyan-500/20 border border-cyan-500/40 flex items-center justify-center text-cyan-300 shrink-0">
-              <Icons.Sparkles className="w-6 h-6" />
-            </div>
-            <div>
-              <h4 className="text-lg font-bold text-white">AI-Accelerated Engineering Workflow</h4>
-              <p className="text-sm text-slate-300 mt-1 max-w-2xl">
-                I integrate structured AI prompting to rapidly scaffold prototypes, design robust REST schemas, write unit test suites, and generate technical documentation—multiplying delivery velocity while ensuring code quality.
-              </p>
-            </div>
-          </div>
-          <div className="shrink-0 flex items-center gap-2">
-            <span className="px-3.5 py-1.5 rounded-lg bg-cyan-500 text-slate-950 font-bold text-xs uppercase tracking-wider shadow-md shadow-cyan-500/20">
-              High Velocity
-            </span>
-          </div>
         </div>
 
       </div>
     </section>
   );
 };
-

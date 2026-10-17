@@ -4,69 +4,58 @@ import { Icons } from './Icons';
 
 export const Experience: React.FC = () => {
   return (
-    <section id="experience" className="py-20 relative bg-slate-950/50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="experience" className="py-20 border-b border-zinc-900">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto mb-16">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/20 text-cyan-400 text-xs font-semibold uppercase tracking-wider mb-3">
-            <Icons.Briefcase className="w-3.5 h-3.5" />
-            <span>Career & Education</span>
-          </div>
-          <h2 className="text-3xl sm:text-4xl font-extrabold text-white tracking-tight">
-            Experience, Education & Certifications
+        <div className="mb-12">
+          <span className="text-xs font-mono uppercase tracking-wider text-zinc-500">Background</span>
+          <h2 className="text-2xl sm:text-3xl font-bold text-zinc-100 mt-1">
+            Experience & Education
           </h2>
-          <p className="mt-4 text-slate-400 text-base sm:text-lg">
-            Practical industry software development, degree specialization in AI/VR and cloud computing, and developer certifications.
-          </p>
         </div>
 
-        {/* Experience & Education Dual Column Timeline */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-16">
+        {/* Work & Education Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-14">
           
           {/* Work Experience */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-2.5 pb-2 border-b border-slate-800">
-              <div className="p-2 rounded-lg bg-cyan-500/10 text-cyan-400 border border-cyan-500/20">
-                <Icons.Briefcase className="w-5 h-5" />
-              </div>
-              <h3 className="text-xl font-bold text-white">Work Experience</h3>
-            </div>
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 pb-2 border-b border-zinc-800">
+              Work Experience
+            </h3>
 
             {experienceData.filter(e => e.type === 'Work').map((exp) => (
               <div
                 key={exp.id}
-                className="glass-panel rounded-2xl p-6 sm:p-7 border border-slate-800/80 hover:border-slate-700 transition-all space-y-4"
+                className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 space-y-3"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div>
-                    <h4 className="text-lg font-bold text-white">{exp.role}</h4>
-                    <div className="text-sm font-semibold text-cyan-400">{exp.company}</div>
-                  </div>
-                  <span className="self-start sm:self-center px-3 py-1 text-xs font-mono font-medium rounded-full bg-emerald-500/10 border border-emerald-500/20 text-emerald-400">
-                    {exp.period}
-                  </span>
+                <div className="flex justify-between items-baseline gap-2">
+                  <h4 className="text-base font-semibold text-zinc-100">{exp.role}</h4>
+                  <span className="text-xs font-mono text-zinc-400">{exp.period}</span>
                 </div>
 
-                <div className="text-xs text-slate-400 flex items-center gap-1.5 font-mono">
-                  <Icons.MapPin className="w-3.5 h-3.5 text-slate-500" />
-                  <span>{exp.location}</span>
+                <div className="text-xs text-zinc-300 font-medium">
+                  {exp.company}
                 </div>
 
-                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                <div className="text-[11px] text-zinc-500">
+                  {exp.location}
+                </div>
+
+                <ul className="space-y-1.5 text-xs text-zinc-400 pt-1">
                   {exp.description.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 leading-relaxed">
-                      <span className="text-cyan-400 font-bold mt-0.5">›</span>
+                    <li key={i} className="flex items-start gap-1.5">
+                      <span className="text-zinc-600 mt-0.5">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="pt-3 border-t border-slate-800/60 flex flex-wrap gap-1.5">
+                <div className="pt-2 flex flex-wrap gap-1.5 border-t border-zinc-800/60">
                   {exp.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 text-[11px] font-mono bg-slate-900 border border-slate-800 rounded text-slate-300"
+                      className="px-2 py-0.5 text-[10px] font-mono bg-zinc-900 border border-zinc-800 rounded text-zinc-400"
                     >
                       {skill}
                     </span>
@@ -77,48 +66,43 @@ export const Experience: React.FC = () => {
           </div>
 
           {/* Education */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-2.5 pb-2 border-b border-slate-800">
-              <div className="p-2 rounded-lg bg-blue-500/10 text-blue-400 border border-blue-500/20">
-                <Icons.GraduationCap className="w-5 h-5" />
-              </div>
-              <h3 className="text-xl font-bold text-white">Education & Specialization</h3>
-            </div>
+          <div className="space-y-4">
+            <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 pb-2 border-b border-zinc-800">
+              Education
+            </h3>
 
             {experienceData.filter(e => e.type === 'Education').map((edu) => (
               <div
                 key={edu.id}
-                className="glass-panel rounded-2xl p-6 sm:p-7 border border-slate-800/80 hover:border-slate-700 transition-all space-y-4"
+                className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-5 space-y-3"
               >
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
-                  <div>
-                    <h4 className="text-lg font-bold text-white">{edu.role}</h4>
-                    <div className="text-sm font-semibold text-blue-400">{edu.company}</div>
-                  </div>
-                  <span className="self-start sm:self-center px-3 py-1 text-xs font-mono font-medium rounded-full bg-blue-500/10 border border-blue-500/20 text-blue-400">
-                    {edu.period}
-                  </span>
+                <div className="flex justify-between items-baseline gap-2">
+                  <h4 className="text-base font-semibold text-zinc-100">{edu.role}</h4>
+                  <span className="text-xs font-mono text-zinc-400">{edu.period}</span>
                 </div>
 
-                <div className="text-xs text-slate-400 flex items-center gap-1.5 font-mono">
-                  <Icons.MapPin className="w-3.5 h-3.5 text-slate-500" />
-                  <span>{edu.location}</span>
+                <div className="text-xs text-zinc-300 font-medium">
+                  {edu.company}
                 </div>
 
-                <ul className="space-y-2.5 text-xs sm:text-sm text-slate-300">
+                <div className="text-[11px] text-zinc-500">
+                  {edu.location}
+                </div>
+
+                <ul className="space-y-1.5 text-xs text-zinc-400 pt-1">
                   {edu.description.map((item, i) => (
-                    <li key={i} className="flex items-start gap-2.5 leading-relaxed">
-                      <span className="text-blue-400 font-bold mt-0.5">›</span>
+                    <li key={i} className="flex items-start gap-1.5">
+                      <span className="text-zinc-600 mt-0.5">•</span>
                       <span>{item}</span>
                     </li>
                   ))}
                 </ul>
 
-                <div className="pt-3 border-t border-slate-800/60 flex flex-wrap gap-1.5">
+                <div className="pt-2 flex flex-wrap gap-1.5 border-t border-zinc-800/60">
                   {edu.skills.map((skill) => (
                     <span
                       key={skill}
-                      className="px-2.5 py-1 text-[11px] font-mono bg-slate-900 border border-slate-800 rounded text-slate-300"
+                      className="px-2 py-0.5 text-[10px] font-mono bg-zinc-900 border border-zinc-800 rounded text-zinc-400"
                     >
                       {skill}
                     </span>
@@ -132,41 +116,22 @@ export const Experience: React.FC = () => {
 
         {/* Certifications Showcase */}
         <div>
-          <div className="flex items-center gap-2.5 pb-4 mb-6 border-b border-slate-800">
-            <div className="p-2 rounded-lg bg-amber-500/10 text-amber-400 border border-amber-500/20">
-              <Icons.Award className="w-5 h-5" />
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-white">Developer Certifications & Credentials</h3>
-              <p className="text-xs text-slate-400">Industry-recognized algorithm and full-stack development certifications</p>
-            </div>
-          </div>
+          <h3 className="text-sm font-semibold uppercase tracking-wider text-zinc-400 pb-2 mb-5 border-b border-zinc-800">
+            Certifications
+          </h3>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {certifications.map((cert, idx) => (
               <div
                 key={idx}
-                className="glass-card rounded-xl p-5 border border-slate-800 hover:border-slate-700 transition-all flex flex-col justify-between"
+                className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4 flex flex-col justify-between"
               >
                 <div>
-                  <div className="flex items-start justify-between gap-2 mb-2">
-                    <h4 className="text-sm font-bold text-white leading-snug">{cert.title}</h4>
-                    <span className="px-2 py-0.5 text-[10px] font-mono rounded bg-slate-950 border border-slate-800 text-slate-400 shrink-0">
-                      {cert.date}
-                    </span>
-                  </div>
-                  <div className="text-xs font-semibold text-cyan-400 mb-3">{cert.issuer}</div>
+                  <h4 className="text-xs font-semibold text-zinc-200">{cert.title}</h4>
+                  <span className="text-[11px] text-zinc-500">{cert.issuer}</span>
                 </div>
-
-                <div className="pt-3 border-t border-slate-800/60 flex flex-wrap gap-1">
-                  {cert.skills.map((s) => (
-                    <span
-                      key={s}
-                      className="px-2 py-0.5 text-[10px] font-mono bg-slate-900/90 text-slate-300 rounded"
-                    >
-                      {s}
-                    </span>
-                  ))}
+                <div className="mt-3 pt-2 border-t border-zinc-800/60 text-[10px] font-mono text-zinc-400">
+                  {cert.skills.join(', ')}
                 </div>
               </div>
             ))}
@@ -177,4 +142,3 @@ export const Experience: React.FC = () => {
     </section>
   );
 };
-
